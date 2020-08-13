@@ -2,55 +2,8 @@
 
 @import url('../blocks/page/page.css');
 
-.content {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 199px;
-  display: flex;
-  flex-direction: column;
-}
+@import url('../blocks/content/content.css');
+@import url('../blocks/content/__header/content__header.css');
 
-.content__header {
-  margin-top: 45px;
-  margin-bottom: 0;
-}
-
-.header {
-  align-self: flex-start;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  min-height: 74px;
-}
-
-.header__logo {
-  width: 142px;
-  height: 33px;
-}
-
-
-@media screen and (max-width: 640px) {
-  .content {
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .content__header {
-    margin-top: 28px;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .header {
-    min-height: 56px;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .header__logo {
-    width: 103px;
-    height: 24px;
-  }
-}
+@import url('../blocks/header/header.css');
+@import url('../blocks/header/__logo/header__logo.css');

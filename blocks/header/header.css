@@ -1,0 +1,13 @@
+.header {
+  align-self: flex-start;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 74px;
+}
+
+@media screen and (max-width: 640px) {
+  .header {
+    min-height: 56px;
+  }
+}
