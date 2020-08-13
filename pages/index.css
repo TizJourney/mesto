@@ -27,3 +27,30 @@
   width: 142px;
   height: 33px;
 }
+
+
+@media screen and (max-width: 640px) {
+  .content {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .content__header {
+    min-height: 28px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .header {
+    min-height: 56px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .header__logo {
+    width: 103px;
+    height: 24px;
+  }
+}
