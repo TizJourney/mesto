@@ -7,3 +7,71 @@
 
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__logo/header__logo.css');
+
+.content__profile {
+  margin-top: 40px;
+}
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-info-block {
+  display: flex;
+  align-items: center;
+}
+
+.profile-info-block__text-content {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profile-info-block__title-element {
+  display: flex;
+  align-items: baseline;
+}
+
+.profile-info-block__title {
+  margin: 0;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.33;
+}
+
+.profile-info-block__descrption {
+  margin: 16px 0 0 0;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.22;
+}
+
+.profile-info-block__edit-button {
+  border-color: #fff;
+  background-color: #000;
+  margin-left: 17px;
+  width: 24px;
+  height: 24px;
+}
+
+.profile-info-block__avatar {
+  border-radius: 50%;
+  height: 120px;
+}
+
+.profile__add-button {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: #fff;
+  background-color: #000;
+}
