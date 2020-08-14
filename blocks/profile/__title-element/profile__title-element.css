@@ -1,0 +1,4 @@
+.profile__title-element {
+  display: flex;
+  align-items: baseline;
+}

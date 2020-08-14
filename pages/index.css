@@ -5,90 +5,16 @@
 
 @import url('../blocks/content/content.css');
 @import url('../blocks/content/__header/content__header.css');
+@import url('../blocks/content/__profile/content__profile.css');
 
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__logo/header__logo.css');
 
-.content__profile {
-  margin-top: 40px;
-}
-
-.profile {
-  display: flex;
-  align-items: center;
-}
-
-.profile__text-content {
-  margin-left: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.profile__title-element {
-  display: flex;
-  align-items: baseline;
-}
-
-.profile__title {
-  margin: 0;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 42px;
-  line-height: 1.33;
-}
-
-.profile__description {
-  margin: 16px 0 0 0;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 1.22;
-}
-
-.profile__edit-button {
-  border-color: #fff;
-  background-color: #000;
-  margin-left: 17px;
-  width: 24px;
-  height: 24px;
-}
-
-.profile__avatar {
-  border-radius: 50%;
-  height: 120px;
-}
-
-.profile__add-button {
-  margin-left: auto;
-  width: 150px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-color: #fff;
-  background-color: #000;
-}
-
-@media screen and (max-width: 640px) {
-  .profile {
-    flex-direction: column;
-    align-items: center;
-    margin-left: 19px;
-    margin-right: 19px;
-  }
-
-  .profile__text-content {
-    margin-top: 14px;
-    margin-left: 0;
-    align-items: center;
-  }
-
-  .profile__add-button {
-    margin-left: 0;
-    margin-top: 36px;
-    width: 100%;
-  }
-}
+@import url('../blocks/profile/profile.css');
+@import url('../blocks/profile/__avatar/profile__avatar.css');
+@import url('../blocks/profile/__text-content/profile__text-content.css');
+@import url('../blocks/profile/__title-element/profile__title-element.css');
+@import url('../blocks/profile/__title/profile__title.css');
+@import url('../blocks/profile/__description/profile__description.css');
+@import url('../blocks/profile/__edit-button/profile__edit-button.css');
+@import url('../blocks/profile/__add-button/profile__add-button.css');
