@@ -5,7 +5,7 @@
   align-items: flex-start;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 800px) {
   .profile__text-content {
     margin-top: 14px;
     margin-left: 0;

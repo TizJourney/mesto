@@ -12,7 +12,7 @@
 }
 
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 800px) {
   .elements {
     grid-template-columns: 1fr;
   }
