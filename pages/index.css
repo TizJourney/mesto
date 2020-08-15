@@ -55,6 +55,7 @@
 }
 
 .popup__container {
+  position: relative;
   width: 430px;
   height: 330px;
   background-color: #fff;
@@ -107,3 +108,12 @@
   text-align: center;
 }
 
+.popup__close-button {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: -50px;
+  right: -50px;
+  border: none;
+  background-color: rgba(0,0,0,0);
+}
