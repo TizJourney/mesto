@@ -2,3 +2,9 @@
   margin-top: 66px;
   margin-bottom: 60px;
 }
+
+@media screen and (max-width: 640px) {
+  .content__footer {
+    margin: 48px 19px 36px 19px;
+  }
+}
