@@ -98,7 +98,6 @@
   padding: 0;
   background-color: #000;
   color: #fff;
-  width: 358px;
   height: 50px;
   font-family: Inter;
   font-style: normal;
@@ -116,4 +115,26 @@
   right: -50px;
   border: none;
   background-color: rgba(0,0,0,0);
+}
+
+@media screen and (max-width: 640px) {
+  .popup__container {
+    width: 300px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .popup__close-button {
+    top: -60px;
+    right:-25px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+  .popup__close-button {
+    top: -60px;
+    right:-25px;
+    }
 }
