@@ -6,6 +6,13 @@
   flex-direction: column;
 }
 
+@media screen and (max-width: 1024px) {
+  .content {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
 @media screen and (max-width: 640px) {
   .content {
     margin-left: 0;
