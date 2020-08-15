@@ -7,6 +7,7 @@
 @import url('../blocks/content/__header/content__header.css');
 @import url('../blocks/content/__profile/content__profile.css');
 @import url('../blocks/content/__elements/content__elements.css');
+@import url('../blocks/content/__footer/content__footer.css');
 
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__logo/header__logo.css');
@@ -29,18 +30,4 @@
 @import url('../blocks/card/__like-button/card__like-button.css');
 @import url('../blocks/card/__like-button-image/card__like-button-image.css');
 
-@import url('../blocks/card/');
-
-.content__footer {
-  margin-top: 66px;
-  margin-bottom: 60px;
-}
-
-.footer {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 1.22;
-  color: #545454;
-}
+@import url('../blocks/footer/footer.css');
