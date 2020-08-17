@@ -1,0 +1,22 @@
+.elements__card-container {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: space-between;
+  justify-content: space-between;
+  row-gap: 21px;
+}
+
+@media screen and (max-width: 1023px) {
+  .elements__card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .elements__card-container {
+    grid-template-columns: 1fr;
+  }
+}

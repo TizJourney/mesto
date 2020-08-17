@@ -3,7 +3,7 @@
   height: 33px;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 800px) {
   .header__logo {
     width: 103px;
     height: 24px;
