@@ -1,13 +1,13 @@
 .content {
   width: 100%;
-  max-width: calc(100% - 2*199px);
+  max-width: 882px;
   display: flex;
   flex-direction: column;
 }
 
 @media screen and (max-width: 1279px) {
   .content {
-    max-width: 600px;
+    max-width: 700px;
   }
 }
 
