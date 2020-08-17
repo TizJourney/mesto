@@ -1,15 +1,16 @@
-let popupElement = document.querySelector('.popup');
-let formElement = popupElement.querySelector('.popup__container');
-let formCloseButtonElement = formElement.querySelector('.popup__close-button');
-let nameInput = formElement.querySelector('.popup__input_field_title');
-let descriptionInput = formElement.querySelector('.popup__input_field_description');
+const popupElement = document.querySelector('.popup');
+const formElement = popupElement.querySelector('.popup__container');
+const formCloseButtonElement = formElement.querySelector('.popup__close-button');
+const nameInput = formElement.querySelector('.popup__input_field_title');
+const descriptionInput = formElement.querySelector('.popup__input_field_description');
 
-let profileElement = document.querySelector('.profile');
-let editProfileButtonElement = profileElement.querySelector('.profile__edit-button');
+const profileElement = document.querySelector('.profile');
+const editProfileButtonElement = profileElement.querySelector('.profile__edit-button');
+
+const titleProfile = profileElement.querySelector('.profile__title');
+const descriptionProfile = profileElement.querySelector('.profile__description');
 
 function showPopup() {
-  let titleProfile = profileElement.querySelector('.profile__title');
-  let descriptionProfile = profileElement.querySelector('.profile__description');
 
   nameInput.value = titleProfile.textContent;
   descriptionInput.value = descriptionProfile.textContent;
@@ -22,9 +23,6 @@ function hidePopup() {
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
-
-    let titleProfile = profileElement.querySelector('.profile__title');
-    let descriptionProfile = profileElement.querySelector('.profile__description');
 
     titleProfile.textContent = nameInput.value;
     descriptionProfile.textContent = descriptionInput.value;
