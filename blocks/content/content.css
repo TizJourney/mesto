@@ -1,21 +1,18 @@
 .content {
   width: 100%;
-  max-width: 1280px;
-  margin: 0 199px;
+  max-width: calc(100% - 2*199px);
   display: flex;
   flex-direction: column;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1279px) {
   .content {
-    margin-left: 50px;
-    margin-right: 50px;
+    max-width: 600px;
   }
 }
 
 @media screen and (max-width: 800px) {
   .content {
-    margin-left: 0;
-    margin-right: 0;
+    max-width: 320px;
   }
 }
