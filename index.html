@@ -17,22 +17,6 @@
         <img class="header__logo" src="./images/logo.svg" alt='Лого сайта "Mesto - Russia"'>
       </header>
       <main>
-        <section class="popup popup_hidden">
-          <form class="popup__container">
-            <h2 class="popup__element popup__title">
-              Редактировать профиль
-            </h2>
-            <input class="popup__element popup__input popup__input_field_title">
-            <input class="popup__element popup__input popup__input_field_description">
-            <button class="popup__element popup__save-button" type="submit">
-              Сохранить
-            </button>
-            <button class="popup__close-button">
-              <img class="popup__close-button-image" src="./images/close_button.svg" alt="Кнопка закрытия формы">
-            </button>
-          </form>
-        </section>
-
         <section class="profile content__profile">
           <img class="profile__avatar" src="./images/profile_avatar.jpg" alt="Аватар профиля">
           <div class="profile__text-content">
@@ -116,6 +100,23 @@
       <footer class="footer content__footer">
         &copy; 2020 Mesto Russia
       </footer>
+
+      <div class="popup popup_hidden">
+        <form class="popup__container">
+          <h2 class="popup__element popup__title">
+            Редактировать профиль
+          </h2>
+          <input class="popup__element popup__input popup__input_field_title">
+          <input class="popup__element popup__input popup__input_field_description">
+          <button class="popup__element popup__save-button" type="submit">
+            Сохранить
+          </button>
+          <button class="popup__close-button">
+            <img class="popup__close-button-image" src="./images/close_button.svg" alt="Кнопка закрытия формы">
+          </button>
+        </form>
+      </div>
+
     </div>
   </div>
   <script src="./scripts/index.js"></script>
