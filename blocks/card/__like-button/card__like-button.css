@@ -6,3 +6,8 @@
   background-image: url('../../../images/like_button_image.svg');
   background-size: cover;
 }
+
+.card__like-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
