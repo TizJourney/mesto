@@ -1,0 +1,5 @@
+.profile__edit-button-image {
+  background-image: url('../../../images/edit_button.svg');
+  background-size: cover;
+  padding-bottom: 100%;
+}
