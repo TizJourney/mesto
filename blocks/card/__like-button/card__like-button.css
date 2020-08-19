@@ -5,6 +5,7 @@
   border: none;
   background-image: url('../../../images/like_button_image.svg');
   background-size: cover;
+  margin-left: auto;
 }
 
 .card__like-button:hover {
