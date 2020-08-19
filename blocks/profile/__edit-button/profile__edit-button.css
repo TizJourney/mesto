@@ -5,6 +5,7 @@
   margin-left: 17px;
   width: 24px;
   height: 24px;
+  border: none;
 }
 
 .profile__edit-button:hover {
