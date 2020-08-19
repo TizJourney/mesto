@@ -6,6 +6,7 @@
   width: 24px;
   height: 24px;
   border: 1px solid #fff;
+  background: url('../../../images/edit_button.svg') no-repeat 50% 50%;
 }
 
 .profile__edit-button:hover {
