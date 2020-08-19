@@ -41,3 +41,10 @@
 @import url('../blocks/popup/__input/popup__input.css');
 @import url('../blocks/popup/__save-button/popup__save-button.css');
 @import url('../blocks/popup/__close-button/popup__close-button.css');
+
+.profile__edit-button-image {
+  /* background-image: url('../../../images/edit_button.svg'); */
+  background-image: url('../images/edit_button.svg');
+  background-size: cover;
+  padding-bottom: 100%;
+}
