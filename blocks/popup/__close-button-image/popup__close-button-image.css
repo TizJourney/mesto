@@ -1,0 +1,5 @@
+.popup__close-button-image {
+  padding-bottom: 100%;
+  background-image: url('../../../images/close_button.svg');
+  background-size: cover;
+}
