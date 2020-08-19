@@ -1,12 +1,13 @@
 const popupElement = document.querySelector('.popup');
+
 const formElement = popupElement.querySelector('.popup__container');
 const formCloseButtonElement = formElement.querySelector('.popup__close-button');
 const nameInput = formElement.querySelector('.popup__input_field_title');
 const descriptionInput = formElement.querySelector('.popup__input_field_description');
 
 const profileElement = document.querySelector('.profile');
-const editProfileButtonElement = profileElement.querySelector('.profile__edit-button');
 
+const editProfileButtonElement = profileElement.querySelector('.profile__edit-button');
 const titleProfile = profileElement.querySelector('.profile__title');
 const descriptionProfile = profileElement.querySelector('.profile__description');
 
