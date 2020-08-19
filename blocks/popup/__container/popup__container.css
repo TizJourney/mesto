@@ -11,8 +11,7 @@
 
 @media screen and (max-width: 800px) {
   .popup__container {
-    margin-left: 0;
-    margin-right: 0;
-    /* padding: 34px 36px 36px 36px; */
+    grid-template-columns: 258px;
+    padding: 34px 16px 36px 16px;
   }
 }
