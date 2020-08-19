@@ -42,25 +42,3 @@
 @import url('../blocks/popup/__input/popup__input.css');
 @import url('../blocks/popup/__save-button/popup__save-button.css');
 @import url('../blocks/popup/__close-button/popup__close-button.css');
-
-.elements__card-contaner {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  row-gap: 21px;
-  justify-items: center;
-}
-
-@media screen and (max-width: 1279px) {
-  .elements__card-contaner {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .elements__card-contaner {
-    grid-template-columns: 1fr;
-  }
-}
