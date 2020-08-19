@@ -1,4 +1,7 @@
 .profile__title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   margin: 0;
   font-style: normal;
   font-weight: 500;

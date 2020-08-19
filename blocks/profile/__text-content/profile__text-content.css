@@ -1,12 +1,15 @@
 .profile__text-content {
+  max-width: 60%;
   margin-left: 30px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
 }
 
 @media screen and (max-width: 800px) {
   .profile__text-content {
+    max-width: 100%;
     margin-top: 14px;
     margin-left: 0;
     align-items: center;
