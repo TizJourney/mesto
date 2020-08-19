@@ -1,4 +1,8 @@
 .card__like-button {
+  width: 20px;
+  height: 18px;
   background-color: #fff;
   border: none;
+  background-image: url('../../../images/like_button_image.svg');
+  background-size: cover;
 }
