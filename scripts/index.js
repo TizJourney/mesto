@@ -1,17 +1,3 @@
-const popupElement = document.querySelector('.popup');
-
-const formElement = popupElement.querySelector('.popup__container');
-const formCloseButtonElement = formElement.querySelector('.popup__close-button');
-const nameInput = formElement.querySelector('.popup__input_field_title');
-const descriptionInput = formElement.querySelector('.popup__input_field_description');
-
-const profileElement = document.querySelector('.profile');
-
-const editProfileButtonElement = profileElement.querySelector('.profile__edit-button');
-const titleProfile = profileElement.querySelector('.profile__title');
-const descriptionProfile = profileElement.querySelector('.profile__description');
-
-
 //Генерация динамических карточек
 const initialCards = [
   {
@@ -55,28 +41,42 @@ const cardContainer = document.querySelector('.elements__card-container');
 cardContainer.append(...cardPreparedElements);
 
 // функциональность "Изменить профиль"
-function showPopup() {
+const popupEditProfileElement = document.querySelector('.popup-edit-profile');
+const formEditProfile = popupEditProfileElement.querySelector('.popup__input_field_title');
+const formEditProfileNameInput = popupEditProfileElement.querySelector('.popup__input_field_title');
+const formEditProfileDescriptionInput = popupEditProfileElement.querySelector('.popup__input_field_description');
+const formEditProfileCloseButtonElement = popupEditProfileElement.querySelector('.popup__close-button');
 
-  nameInput.value = titleProfile.textContent;
-  descriptionInput.value = descriptionProfile.textContent;
-  popupElement.classList.add('popup_opened');
-}
+const profileElement = document.querySelector('.profile');
 
-function hidePopup() {
+const editProfileButtonElement = profileElement.querySelector('.profile__edit-button');
+const titleProfile = profileElement.querySelector('.profile__title');
+const descriptionProfile = profileElement.querySelector('.profile__description');
+
+function hidePopupEditProfile() {
   popupElement.classList.remove('popup_opened');
 }
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
 
-    titleProfile.textContent = nameInput.value;
-    descriptionProfile.textContent = descriptionInput.value;
+    titleProfile.textContent = formEditProfileNameInput.value;
+    descriptionProfile.textContent = formEditProfileDescriptionInput.value;
 
-    hidePopup();
+    hidePopupEditProfile();
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+formEditProfile.addEventListener('submit', formSubmitHandler);
 
-editProfileButtonElement.addEventListener('click', showPopup);
-formCloseButtonElement.addEventListener('click', hidePopup);
+editProfileButtonElement.addEventListener('click', function () {
+    formEditProfileNameInput.value = titleProfile.textContent;
+    formEditProfileDescriptionInput.value = descriptionProfile.textContent;
+    popupEditProfileElement.classList.add('popup_opened');
+});
+formEditProfileCloseButtonElement.addEventListener('click', hidePopupEditProfile);
 
+// функциональность "Добавить картинку"
+const popupAddCardElement = document.querySelector('.popup-add-card');
+const formAddCardPictureNameInput = popupAddCardElement.querySelector('.popup__input_field_picture-name');
+const formAddCardPictureLinkInput = popupAddCardElement.querySelector('.ppopup__input_field_picture-link');
+const formAddCardCloseButtonElement = popupAddCardElement.querySelector('.popup__close-button');
