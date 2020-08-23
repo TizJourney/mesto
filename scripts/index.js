@@ -47,8 +47,6 @@ const formEditProfileNameInput = popupEditProfileElement.querySelector('.popup__
 const formEditProfileDescriptionInput = popupEditProfileElement.querySelector('.popup__input_field_description');
 
 const profileElement = document.querySelector('.profile');
-
-const editProfileButtonElement = profileElement.querySelector('.profile__edit-button');
 const titleProfile = profileElement.querySelector('.profile__title');
 const descriptionProfile = profileElement.querySelector('.profile__description');
 
@@ -65,7 +63,7 @@ formEditProfile.addEventListener('submit', function (evt) {
   hidePopupEditProfile();
 });
 
-editProfileButtonElement.addEventListener('click', function () {
+profileElement.querySelector('.profile__edit-button').addEventListener('click', function () {
     formEditProfileNameInput.value = titleProfile.textContent;
     formEditProfileDescriptionInput.value = descriptionProfile.textContent;
     popupEditProfileElement.classList.add('popup_opened');
@@ -88,4 +86,8 @@ formAddCrad.addEventListener('submit', function (evt) {
   hidePopupAddCard();
 });
 
-popupAddCardElement.querySelector('.popup__close-button').addEventListener('click', hidePopupEditProfile);
+profileElement.querySelector('.profile__add-button').addEventListener('click', function () {
+  popupAddCardElement.classList.add('popup_opened');
+});
+
+popupAddCardElement.querySelector('.popup__close-button').addEventListener('click', hidePopupAddCard);
