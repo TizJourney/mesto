@@ -35,6 +35,10 @@ function makeCardElement(name, link) {
   cardImage.src = link;
   cardImage.alt = `Изображение места ${name}`;
   cardElement.querySelector('.card__title').textContent = name;
+  const cardLikeButton = cardElement.querySelector('.card__like-button');
+  cardLikeButton.addEventListener('click', function () {
+    cardLikeButton.classList.toggle('card__like-button_active');
+  });
   return cardElement;
 }
 
