@@ -66,6 +66,10 @@ function hidePopupEditProfile() {
   popupEditProfileElement.classList.remove('popup_opened');
 }
 
+function hidePopup(event) {
+  event.target.closest('.popup').classList.remove('popup_opened');
+}
+
 formEditProfile.addEventListener('submit', function (evt) {
   evt.preventDefault();
 
@@ -108,3 +112,8 @@ formAddCard.addEventListener('submit', function (evt) {
 });
 
 popupAddCardElement.querySelector('.popup__close-button').addEventListener('click', hidePopupAddCard);
+
+// функциональность "показать полную картинку"
+const popupFullImage = document.querySelector('.popup-full-image');
+
+popupFullImage.querySelector('.popup__close-button').addEventListener('click', hidePopup);

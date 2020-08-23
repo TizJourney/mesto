@@ -39,8 +39,8 @@
         <p class="footer__text-content">&copy; 2020 Mesto Russia</p>
       </footer>
 
-      <div class="popup-edit-profile popup popup_hidden">
-        <form class="popup__form" name="popup-form-for-editing-profile">
+      <div class="popup-edit-profile popup">
+        <form class="popup__internal-content popup__form" name="popup-form-for-editing-profile">
           <h2 class="popup__title">
             Редактировать профиль
           </h2>
@@ -51,17 +51,23 @@
         </form>
       </div>
 
-      <div class="popup-add-card popup popup_hidden">
-        <form class="popup__form" name="popup-form-for-adding-cards">
+      <div class="popup-add-card popup">
+        <form class="popup__internal-content popup__form" name="popup-form-for-adding-cards">
           <h2 class="popup__title">
             Новое место
           </h2>
           <input class="popup__input popup__input_field_picture-name" name="name" placeholder="Название">
           <input class="popup__input popup__input_field_picture-link" name="link" placeholder="Ссылка на картинку">
           <button class="popup__save-button" type="submit" aria-label="Создать карточку">Создать</button>
-          <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
         </form>
+        <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
       </div>
+
+      <div class="popup-full-image popup popup_opened">
+        <div class="popup__internal-content">
+          <img class="full-image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="Картинка">
+          <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
+        </div>
     </div>
   </div>
 

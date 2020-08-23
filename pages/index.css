@@ -44,3 +44,13 @@
 @import url('../blocks/popup/__input/popup__input.css');
 @import url('../blocks/popup/__save-button/popup__save-button.css');
 @import url('../blocks/popup/__close-button/popup__close-button.css');
+
+.popup__internal-content {
+  position: relative;
+  z-index: 1;
+}
+
+.full-image{
+  max-width: 75vw;
+  max-height: 75vh;
+}
