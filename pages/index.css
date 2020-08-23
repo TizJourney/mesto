@@ -26,7 +26,6 @@
 @import url('../blocks/elements/__card-container/elements__card-container.css');
 
 @import url('../blocks/card/card.css');
-@import url('../blocks/card/__image-container/card__image-container.css');
 @import url('../blocks/card/__image/card__image.css');
 @import url('../blocks/card/__title-container/card__title-container.css');
 @import url('../blocks/card/__title/card__title.css');
@@ -53,4 +52,22 @@
 .full-image{
   max-width: 75vw;
   max-height: 75vh;
+}
+
+.card__full-image-button {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.card__full-image-button:before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.card__full-image-button:hover {
+  cursor: pointer;
 }
