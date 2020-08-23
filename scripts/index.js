@@ -42,10 +42,9 @@ cardContainer.append(...cardPreparedElements);
 
 // функциональность "Изменить профиль"
 const popupEditProfileElement = document.querySelector('.popup-edit-profile');
-const formEditProfile = popupEditProfileElement.querySelector('.popup__input_field_title');
+const formEditProfile = popupEditProfileElement.querySelector('.popup__form');
 const formEditProfileNameInput = popupEditProfileElement.querySelector('.popup__input_field_title');
 const formEditProfileDescriptionInput = popupEditProfileElement.querySelector('.popup__input_field_description');
-const formEditProfileCloseButtonElement = popupEditProfileElement.querySelector('.popup__close-button');
 
 const profileElement = document.querySelector('.profile');
 
@@ -54,29 +53,39 @@ const titleProfile = profileElement.querySelector('.profile__title');
 const descriptionProfile = profileElement.querySelector('.profile__description');
 
 function hidePopupEditProfile() {
-  popupElement.classList.remove('popup_opened');
+  popupEditProfileElement.classList.remove('popup_opened');
 }
 
-function formSubmitHandler (evt) {
-    evt.preventDefault();
+formEditProfile.addEventListener('submit', function (evt) {
+  evt.preventDefault();
 
-    titleProfile.textContent = formEditProfileNameInput.value;
-    descriptionProfile.textContent = formEditProfileDescriptionInput.value;
+  titleProfile.textContent = formEditProfileNameInput.value;
+  descriptionProfile.textContent = formEditProfileDescriptionInput.value;
 
-    hidePopupEditProfile();
-}
-
-formEditProfile.addEventListener('submit', formSubmitHandler);
+  hidePopupEditProfile();
+});
 
 editProfileButtonElement.addEventListener('click', function () {
     formEditProfileNameInput.value = titleProfile.textContent;
     formEditProfileDescriptionInput.value = descriptionProfile.textContent;
     popupEditProfileElement.classList.add('popup_opened');
 });
-formEditProfileCloseButtonElement.addEventListener('click', hidePopupEditProfile);
+
+popupEditProfileElement.querySelector('.popup__close-button').addEventListener('click', hidePopupEditProfile);
 
 // функциональность "Добавить картинку"
 const popupAddCardElement = document.querySelector('.popup-add-card');
+const formAddCrad = popupEditProfileElement.querySelector('.popup__form');
 const formAddCardPictureNameInput = popupAddCardElement.querySelector('.popup__input_field_picture-name');
 const formAddCardPictureLinkInput = popupAddCardElement.querySelector('.ppopup__input_field_picture-link');
-const formAddCardCloseButtonElement = popupAddCardElement.querySelector('.popup__close-button');
+
+function hidePopupAddCard() {
+  popupAddCardElement.classList.remove('popup_opened');
+}
+
+formAddCrad.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+  hidePopupAddCard();
+});
+
+popupAddCardElement.querySelector('.popup__close-button').addEventListener('click', hidePopupEditProfile);
