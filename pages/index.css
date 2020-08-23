@@ -26,6 +26,7 @@
 @import url('../blocks/elements/__card-container/elements__card-container.css');
 
 @import url('../blocks/card/card.css');
+@import url('../blocks/card/__image-container/card__image-container.css');
 @import url('../blocks/card/__image/card__image.css');
 @import url('../blocks/card/__title-container/card__title-container.css');
 @import url('../blocks/card/__title/card__title.css');
@@ -41,9 +42,3 @@
 @import url('../blocks/popup/__input/popup__input.css');
 @import url('../blocks/popup/__save-button/popup__save-button.css');
 @import url('../blocks/popup/__close-button/popup__close-button.css');
-
-.card__image-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 100%;
-}
