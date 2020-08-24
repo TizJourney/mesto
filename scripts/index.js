@@ -58,12 +58,12 @@ function showPopup(element) {
 }
 
 function hidePopup(element) {
-  popupElement = element.closest('.popup');
-  popupElement.classList.remove('popup_opened');
+  element.classList.remove('popup_opened');
 }
 
 document.querySelectorAll('.popup__close-button').forEach(function (item) {
-  item.addEventListener('click', (event) => { hidePopup(event.target) });
+  const popupElement = item.closest('.popup');
+  item.addEventListener('click', (event) => { hidePopup(popupElement) });
 });
 
 // функциональность "Изменить профиль"
@@ -80,7 +80,8 @@ function submitFormEditProfile(event) {
   titleProfile.textContent = formEditProfileNameInput.value;
   descriptionProfile.textContent = formEditProfileDescriptionInput.value;
 
-  hidePopup(event.target);
+  const popupElement = event.target.closest('.popup');
+  hidePopup(popupElement);
 }
 
 profileElement.querySelector('.profile__edit-button').addEventListener('click', initAndShowFormEditProfile);
@@ -99,7 +100,8 @@ function submitFormAddCard(event) {
   const newCard = makeCardElement(formAddCardPictureNameInput.value, formAddCardPictureLinkInput.value);
   cardContainer.prepend(newCard);
 
-  hidePopup(event.target);
+  const popupElement = event.target.closest('.popup');
+  hidePopup(popupElement);
 }
 
 profileElement.querySelector('.profile__add-button').addEventListener('click', initAndShowAddCardPopup);
