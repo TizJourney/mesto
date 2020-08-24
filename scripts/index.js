@@ -1,27 +1,27 @@
 const initialCards = [
   {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
 
@@ -53,23 +53,17 @@ const cardContainer = document.querySelector('.elements__card-container')
 const cardTemplate = document.querySelector('#card-temlate').content;
 
 // общая функциональность для всех попапов
-function showPopup(element, strong=false) {
+function showPopup(element) {
   element.classList.add('popup_opened');
-  if (strong) {
-    element.querySelector('.popup__overlay').classList.add('popup__overlay_shadow_strong');
-  } else {
-    element.querySelector('.popup__overlay').classList.add('popup__overlay_shadow_medium');
-  }
 }
 
 function hidePopup(element) {
-  popupElement =element.closest('.popup');
+  popupElement = element.closest('.popup');
   popupElement.classList.remove('popup_opened');
-  popupElement.querySelector('.popup__overlay').classList.remove('popup__overlay_shadow_medium', 'popup__overlay_shadow_strong');
 }
 
 document.querySelectorAll('.popup__close-button').forEach(function (item) {
-  item.addEventListener('click', (event) => {hidePopup(event.target)});
+  item.addEventListener('click', (event) => { hidePopup(event.target) });
 });
 
 // функциональность "Изменить профиль"
@@ -117,7 +111,7 @@ function showFullsizeImagePopup(name, link) {
   popupFullsizeImagePicture.alt = `Изображение места ${name}`;
   popupFullsizeImageCaption.textContent = name;
 
-  showPopup(popupFullsizeImage, true);
+  showPopup(popupFullsizeImage);
 }
 
 function makeCardElement(name, link) {
@@ -147,7 +141,7 @@ function makeCardElement(name, link) {
 }
 
 function prepareInitialCards() {
-  const cardPreparedElements = initialCards.map( (cardContent) => makeCardElement(cardContent['name'], cardContent['link']));
+  const cardPreparedElements = initialCards.map((cardContent) => makeCardElement(cardContent['name'], cardContent['link']));
   cardContainer.append(...cardPreparedElements);
 }
 
