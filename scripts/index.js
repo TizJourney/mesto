@@ -1,13 +1,17 @@
 // общая функциональность для всех попапов
-function showPopup(element) {
+function showPopup(element, strong=false) {
   element.classList.add('popup_opened');
-  element.querySelector('.popup__overlay').classList.add('popup__overlay_shadowed');
+  if (strong) {
+    element.querySelector('.popup__overlay').classList.add('popup__overlay_shadow_strong');
+  } else {
+    element.querySelector('.popup__overlay').classList.add('popup__overlay_shadow_medium');
+  }
 }
 
 function hidePopup(event) {
   popupElement = event.target.closest('.popup');
   popupElement.classList.remove('popup_opened');
-  popupElement.querySelector('.popup__overlay').classList.remove('popup__overlay_shadowed');
+  popupElement.querySelector('.popup__overlay').classList.remove('popup__overlay_shadow_medium', 'popup__overlay_shadow_strong');
 }
 
 document.querySelectorAll('.popup__close-button').forEach(function (item) {
@@ -25,7 +29,7 @@ function showFullImagePopup(name, link) {
   popupFullsizeImagePicture.alt = `Изображение места ${name}`;
   popupFullsizeImageCaption.textContent = name;
 
-  showPopup(popupFullsizeImage);
+  showPopup(popupFullsizeImage, true);
 }
 
 // генерация динамических карточек

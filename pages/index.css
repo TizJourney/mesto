@@ -37,6 +37,9 @@
 @import url('../blocks/footer/__text-content/footer__text-content.css');
 
 @import url('../blocks/popup/popup.css');
+@import url('../blocks/popup/__overlay/popup__overlay.css');
+@import url('../blocks/popup/__overlay/_shadow/popup__overlay_shadow_medium.css');
+@import url('../blocks/popup/__overlay/_shadow/popup__overlay_shadow_strong.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
 @import url('../blocks/popup/__internal-content/popup__internal-content.css');
 @import url('../blocks/popup/__close-button/popup__close-button.css');
@@ -49,21 +52,3 @@
 @import url('../blocks/fullsize-image/fullsize-image.css');
 @import url('../blocks/fullsize-image/__picture/fullsize-image__picture.css');
 @import url('../blocks/fullsize-image/__caption/fullsize-image__caption.css');
-
-.popup__overlay {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  background-color: #000;
-  visibility: hidden;
-  transition: visibility 2s, opacity 2s linear;
-}
-
-.popup__overlay_shadowed {
-  opacity: 0.9;
-  visibility: visible;
-}
