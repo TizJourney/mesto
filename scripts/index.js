@@ -1,3 +1,24 @@
+// функциональность "показать полную картинку"
+const popupFullsizeImage = document.querySelector('.popup-fullsize-image');
+const popupFullsizeImageFigure = popupFullsizeImage.querySelector('.fullsize-image');
+const popupFullsizeImagePicture = popupFullsizeImageFigure.querySelector('.fullsize-image__picture');
+const popupFullsizeImageCaption = popupFullsizeImageFigure.querySelector('.fullsize-image__caption');
+
+function hidePopup(event) {
+  event.target.closest('.popup').classList.remove('popup_opened');
+}
+
+popupFullsizeImage.querySelector('.popup__close-button').addEventListener('click', hidePopup);
+
+function showFullImagePopup(name, link) {
+  popupFullsizeImagePicture.src = link;
+  popupFullsizeImagePicture.alt = `Изображение места ${name}`;
+  popupFullsizeImageCaption.textContent = name;
+
+  popupFullsizeImage.classList.add('popup_opened');
+}
+
+
 //Генерация динамических карточек
 const initialCards = [
   {
@@ -35,6 +56,12 @@ function makeCardElement(name, link) {
   cardImage.src = link;
   cardImage.alt = `Изображение места ${name}`;
   cardElement.querySelector('.card__title').textContent = name;
+
+  const cardFullImageButton = cardElement.querySelector('.card__full-image-button');
+  cardFullImageButton.addEventListener('click', function () {
+    showFullImagePopup(name, link);
+  });
+
   const cardLikeButton = cardElement.querySelector('.card__like-button');
   cardLikeButton.addEventListener('click', function () {
     cardLikeButton.classList.toggle('card__like-button_active');
@@ -49,7 +76,7 @@ function makeCardElement(name, link) {
   return cardElement;
 }
 
-cardPreparedElements = initialCards.map( (cardContent) => makeCardElement(cardContent['name'], cardContent['link']));
+const cardPreparedElements = initialCards.map( (cardContent) => makeCardElement(cardContent['name'], cardContent['link']));
 cardContainer.append(...cardPreparedElements);
 
 // функциональность "Изменить профиль"
@@ -66,12 +93,8 @@ function hidePopupEditProfile() {
   popupEditProfileElement.classList.remove('popup_opened');
 }
 
-function hidePopup(event) {
-  event.target.closest('.popup').classList.remove('popup_opened');
-}
-
-formEditProfile.addEventListener('submit', function (evt) {
-  evt.preventDefault();
+formEditProfile.addEventListener('submit', function (event) {
+  event.preventDefault();
 
   titleProfile.textContent = formEditProfileNameInput.value;
   descriptionProfile.textContent = formEditProfileDescriptionInput.value;
@@ -112,8 +135,3 @@ formAddCard.addEventListener('submit', function (evt) {
 });
 
 popupAddCardElement.querySelector('.popup__close-button').addEventListener('click', hidePopupAddCard);
-
-// функциональность "показать полную картинку"
-const popupFullImage = document.querySelector('.popup-full-image');
-
-popupFullImage.querySelector('.popup__close-button').addEventListener('click', hidePopup);

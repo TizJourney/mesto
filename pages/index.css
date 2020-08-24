@@ -49,7 +49,12 @@
   z-index: 1;
 }
 
-.full-image{
+.fullsize-image {
+  margin: 0;
+  padding: 0;
+}
+
+.fullsize-image__picture {
   max-width: 75vw;
   max-height: 75vh;
 }
