@@ -21,7 +21,7 @@ function showFullImagePopup(name, link) {
   popupFullsizeImage.classList.add('popup_opened');
 }
 
-//Генерация динамических карточек
+// генерация динамических карточек
 const initialCards = [
   {
       name: 'Архыз',
