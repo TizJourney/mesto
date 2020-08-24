@@ -1,4 +1,4 @@
-.popup__save-button {
+.popup-form__save-button {
   margin-top: 48px;
   padding: 0;
   background-color: #000;
@@ -12,7 +12,7 @@
   border: none;
 }
 
-.popup__save-button:hover {
+.popup-form__save-button:hover {
   opacity: 0.8;
   cursor: pointer;
 }

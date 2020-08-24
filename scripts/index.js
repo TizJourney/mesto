@@ -81,9 +81,9 @@ cardContainer.append(...cardPreparedElements);
 
 // функциональность "Изменить профиль"
 const popupEditProfileElement = document.querySelector('.popup-edit-profile');
-const formEditProfile = popupEditProfileElement.querySelector('.popup__form');
-const formEditProfileNameInput = popupEditProfileElement.querySelector('.popup__input_field_title');
-const formEditProfileDescriptionInput = popupEditProfileElement.querySelector('.popup__input_field_description');
+const formEditProfile = popupEditProfileElement.querySelector('.popup-form');
+const formEditProfileNameInput = popupEditProfileElement.querySelector('.popup-form__input_field_title');
+const formEditProfileDescriptionInput = popupEditProfileElement.querySelector('.popup-form__input_field_description');
 
 const profileElement = document.querySelector('.profile');
 const titleProfile = profileElement.querySelector('.profile__title');
@@ -112,9 +112,9 @@ popupEditProfileElement.querySelector('.popup__close-button').addEventListener('
 
 // функциональность "Добавить картинку"
 const popupAddCardElement = document.querySelector('.popup-add-card');
-const formAddCard = popupAddCardElement.querySelector('.popup__form');
-const formAddCardPictureNameInput = popupAddCardElement.querySelector('.popup__input_field_picture-name');
-const formAddCardPictureLinkInput = popupAddCardElement.querySelector('.popup__input_field_picture-link');
+const formAddCard = popupAddCardElement.querySelector('.popup-form');
+const formAddCardPictureNameInput = popupAddCardElement.querySelector('.popup-form__input_field_picture-name');
+const formAddCardPictureLinkInput = popupAddCardElement.querySelector('.popup-form__input_field_picture-link');
 
 function hidePopupAddCard() {
   popupAddCardElement.classList.remove('popup_opened');

@@ -40,32 +40,36 @@
       </footer>
 
       <div class="popup-edit-profile popup">
-        <form class="popup__internal-content popup__form" name="popup-form-for-editing-profile">
-          <h2 class="popup__title">
-            Редактировать профиль
-          </h2>
-          <input class="popup__input popup__input_field_title" name="title" placeholder="Имя профиля">
-          <input class="popup__input popup__input_field_description" name="description" placeholder="Короткое описание профиля">
-          <button class="popup__save-button" type="submit" aria-label="Сохранить изменения">Сохранить</button>
+        <div class="popup__internal-content">
+          <form class="popup__internal-content-item popup-form" name="popup-form-for-editing-profile">
+            <h2 class="popup-form__title">
+              Редактировать профиль
+            </h2>
+            <input class="popup-form__input popup-form__input_field_title" name="title" placeholder="Имя профиля">
+            <input class="popup-form__input popup-form__input_field_description" name="description" placeholder="Короткое описание профиля">
+            <button class="popup-form__save-button" type="submit" aria-label="Сохранить изменения">Сохранить</button>
+          </form>
           <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
-        </form>
+        </div>
       </div>
 
       <div class="popup-add-card popup">
-        <form class="popup__internal-content popup__form" name="popup-form-for-adding-cards">
-          <h2 class="popup__title">
-            Новое место
-          </h2>
-          <input class="popup__input popup__input_field_picture-name" name="name" placeholder="Название">
-          <input class="popup__input popup__input_field_picture-link" name="link" placeholder="Ссылка на картинку">
-          <button class="popup__save-button" type="submit" aria-label="Создать карточку">Создать</button>
-        </form>
-        <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
+        <div class="popup__internal-content">
+          <form class="popup__internal-content-item popup-form" name="popup-form-for-adding-cards">
+            <h2 class="popup-form">
+              Новое место
+            </h2>
+            <input class="popup-form popup-form__input_field_picture-name" name="name" placeholder="Название">
+            <input class="popup-form popup-form__input_field_picture-link" name="link" placeholder="Ссылка на картинку">
+            <button class="popup-form__save-button" type="submit" aria-label="Создать карточку">Создать</button>
+          </form>
+          <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
+        </div>
       </div>
 
       <div class="popup-fullsize-image popup">
         <div class="popup__internal-content">
-          <figure class="popup__content-item fullsize-image">
+          <figure class="popup__internal-content-item fullsize-image">
             <img class="fullsize-image__picture" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="Картинка">
             <figcaption class="fullsize-image__caption">Называние</figcaption>
           </figure>

@@ -1,16 +1,13 @@
-.popup__form {
-  position: relative;
-  z-index: 1;
+.popup-form {
   border-radius: 3%;
   padding: 34px 36px 36px 36px;
   background-color: #fff;
-  opacity: 1;
   display: grid;
   grid-template-columns: 358px;
 }
 
 @media screen and (max-width: 800px) {
-  .popup__form {
+  .popup-form {
     grid-template-columns: 258px;
     padding: 34px 16px 36px 16px;
   }
