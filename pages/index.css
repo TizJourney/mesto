@@ -59,6 +59,15 @@
   max-height: 75vh;
 }
 
+.fullsize-image__caption {
+  margin-top: 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #fff;
+}
+
 .card__full-image-button {
   position: relative;
   width: 100%;
