@@ -8,14 +8,14 @@ function showPopup(element, strong=false) {
   }
 }
 
-function hidePopup(event) {
-  popupElement = event.target.closest('.popup');
+function hidePopup(element) {
+  popupElement =element.closest('.popup');
   popupElement.classList.remove('popup_opened');
   popupElement.querySelector('.popup__overlay').classList.remove('popup__overlay_shadow_medium', 'popup__overlay_shadow_strong');
 }
 
 document.querySelectorAll('.popup__close-button').forEach(function (item) {
-  item.addEventListener('click', (event) => {hidePopup(event)});
+  item.addEventListener('click', (event) => {hidePopup(event.target)});
 });
 
 // функциональность "показать полную картинку"
@@ -108,7 +108,7 @@ formEditProfile.addEventListener('submit', function (event) {
   titleProfile.textContent = formEditProfileNameInput.value;
   descriptionProfile.textContent = formEditProfileDescriptionInput.value;
 
-  hidePopup(event);
+  hidePopup(event.target);
 });
 
 profileElement.querySelector('.profile__edit-button').addEventListener('click', function () {
@@ -137,5 +137,5 @@ formAddCard.addEventListener('submit', function (event) {
   const newCard = makeCardElement(formAddCardPictureNameInput.value, formAddCardPictureLinkInput.value);
   cardContainer.prepend(newCard);
 
-  hidePopup(event);
+  hidePopup(even.target);
 });
