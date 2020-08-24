@@ -1,6 +1,13 @@
 // общая функциональность для всех попапов
+function showPopup(element) {
+  element.classList.add('popup_opened');
+  element.querySelector('.popup__overlay').classList.add('popup__overlay_shadowed');
+}
+
 function hidePopup(event) {
-  event.target.closest('.popup').classList.remove('popup_opened');
+  popupElement = event.target.closest('.popup');
+  popupElement.classList.remove('popup_opened');
+  popupElement.querySelector('.popup__overlay').classList.remove('popup__overlay_shadowed');
 }
 
 document.querySelectorAll('.popup__close-button').forEach(function (item) {
@@ -18,7 +25,7 @@ function showFullImagePopup(name, link) {
   popupFullsizeImagePicture.alt = `Изображение места ${name}`;
   popupFullsizeImageCaption.textContent = name;
 
-  popupFullsizeImage.classList.add('popup_opened');
+  showPopup(popupFullsizeImage);
 }
 
 // генерация динамических карточек
@@ -103,7 +110,8 @@ formEditProfile.addEventListener('submit', function (event) {
 profileElement.querySelector('.profile__edit-button').addEventListener('click', function () {
     formEditProfileNameInput.value = titleProfile.textContent;
     formEditProfileDescriptionInput.value = descriptionProfile.textContent;
-    popupEditProfileElement.classList.add('popup_opened');
+
+    showPopup(popupEditProfileElement);
 });
 
 // функциональность "Добавить картинку"
@@ -116,7 +124,8 @@ const formAddCardPictureLinkInput = popupAddCardElement.querySelector('.popup-fo
 profileElement.querySelector('.profile__add-button').addEventListener('click', function () {
   formAddCardPictureNameInput.value = '';
   formAddCardPictureLinkInput.value = '';
-  popupAddCardElement.classList.add('popup_opened');
+
+  showPopup(popupAddCardElement);
 });
 
 formAddCard.addEventListener('submit', function (event) {
