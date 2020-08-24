@@ -6,3 +6,10 @@
   color: #000;
   margin: 0 0 20px 0;
 }
+
+@media screen and (max-width: 800px) {
+  .popup-form__title {
+    font-size: 18px;
+  }
+}
+

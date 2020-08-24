@@ -16,3 +16,10 @@
   opacity: 0.8;
   cursor: pointer;
 }
+
+@media screen and (max-width: 800px) {
+  .popup-form__save-button {
+    font-size: 14px;
+    height: 40px;
+  }
+}

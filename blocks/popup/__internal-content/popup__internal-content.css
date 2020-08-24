@@ -1,4 +1,12 @@
 .popup__internal-content {
+  margin: 0;
   position: relative;
   z-index: 1;
+}
+
+@media screen and (max-width: 800px) {
+  .popup__internal-content {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
 }

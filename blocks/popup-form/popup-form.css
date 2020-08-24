@@ -1,6 +1,5 @@
 .popup-form {
   border-radius: 3%;
-
   padding: 34px 36px 36px 36px;
   background-color: #fff;
   display: flex;
@@ -10,7 +9,7 @@
 
 @media screen and (max-width: 800px) {
   .popup-form {
-    grid-template-columns: 258px;
-    padding: 34px 16px 36px 16px;
+    width: auto;
+    padding: 30px 20px;
   }
 }
