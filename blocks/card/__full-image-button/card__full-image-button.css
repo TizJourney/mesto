@@ -1,0 +1,17 @@
+.card__full-image-button {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.card__full-image-button:before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.card__full-image-button:hover {
+  cursor: pointer;
+}

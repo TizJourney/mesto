@@ -26,6 +26,7 @@
 @import url('../blocks/elements/__card-container/elements__card-container.css');
 
 @import url('../blocks/card/card.css');
+@import url('../blocks/card/__full-image-button/card__full-image-button.css');
 @import url('../blocks/card/__image/card__image.css');
 @import url('../blocks/card/__title-container/card__title-container.css');
 @import url('../blocks/card/__title/card__title.css');
@@ -37,6 +38,7 @@
 
 @import url('../blocks/popup/popup.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
+@import url('../blocks/popup/__internal-content/popup__internal-content.css');
 @import url('../blocks/popup/__close-button/popup__close-button.css');
 
 @import url('../blocks/popup-form/popup-form.css');
@@ -44,45 +46,7 @@
 @import url('../blocks/popup-form/__input/popup-form__input.css');
 @import url('../blocks/popup-form/__save-button/popup-form__save-button.css');
 
+@import url('../blocks/fullsize-image/fullsize-image.css');
+@import url('../blocks/fullsize-image/__picture/fullsize-image__picture.css');
+@import url('../blocks/fullsize-image/__caption/fullsize-image__caption.css');
 
-.popup__internal-content {
-  position: relative;
-  z-index: 1;
-}
-
-.fullsize-image {
-  margin: 0;
-  padding: 0;
-}
-
-.fullsize-image__picture {
-  max-width: 75vw;
-  max-height: 75vh;
-}
-
-.fullsize-image__caption {
-  margin-top: 10px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 1.25;
-  color: #fff;
-}
-
-.card__full-image-button {
-  position: relative;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  border: none;
-}
-
-.card__full-image-button:before {
-  content: '';
-  display: block;
-  padding-top: 100%;
-}
-
-.card__full-image-button:hover {
-  cursor: pointer;
-}
