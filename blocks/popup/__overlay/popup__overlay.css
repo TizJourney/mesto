@@ -8,5 +8,4 @@
   opacity: 0;
   background-color: #000;
   visibility: hidden;
-  transition: visibility 1s, opacity 1s linear;
 }
