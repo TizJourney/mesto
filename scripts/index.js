@@ -47,6 +47,7 @@ const formEditProfile = popupEditProfileElement.querySelector('.popup-form');
 const formEditProfileNameInput = popupEditProfileElement.querySelector('.popup-form__input_field_title');
 const formEditProfileDescriptionInput = popupEditProfileElement.querySelector('.popup-form__input_field_description');
 
+
 // переменные попапа popup-add-card
 const popupAddCardElement = document.querySelector('.popup-add-card');
 const formAddCard = popupAddCardElement.querySelector('.popup-form');
@@ -85,8 +86,7 @@ function submitFormEditProfile(event) {
   titleProfile.textContent = formEditProfileNameInput.value;
   descriptionProfile.textContent = formEditProfileDescriptionInput.value;
 
-  const popupElement = event.target.closest('.popup');
-  hidePopup(popupElement);
+  hidePopup(popupEditProfileElement);
 }
 
 profileElementEditButton.addEventListener('click', initAndShowFormEditProfile);
@@ -105,8 +105,7 @@ function submitFormAddCard(event) {
   const newCard = makeCardElement(formAddCardPictureNameInput.value, formAddCardPictureLinkInput.value);
   cardContainer.prepend(newCard);
 
-  const popupElement = event.target.closest('.popup');
-  hidePopup(popupElement);
+  hidePopup(popupAddCardElement);
 }
 
 profileAddButton.addEventListener('click', initAndShowAddCardPopup);
