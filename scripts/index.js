@@ -54,12 +54,20 @@ const cardContainer = document.querySelector('.elements__card-container')
 const cardTemplate = document.querySelector('#card-temlate').content;
 
 // общая функциональность для всех попапов
+function hidePopupCallback(event) {
+  if (event.key === 'Escape') {
+    allPopups.forEach(function (popupElement) { hidePopup(popupElement); });
+  }
+}
+
 function showPopup(element) {
   element.classList.add('popup_opened');
+  document.addEventListener('keydown', hidePopupCallback);
 }
 
 function hidePopup(element) {
   element.classList.remove('popup_opened');
+  document.removeEventListener('keydown', hidePopupCallback);
 }
 
 allPopups.forEach(function (popupElement) {
