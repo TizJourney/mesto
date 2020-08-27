@@ -50,8 +50,12 @@
         </h2>
         <input class="popup-form__input popup-form__input_field_title" name="title" placeholder="Имя профиля" required
           minlength=2 maxlenght=40>
+        <span class="popup-form__input-error popup-form__input-error_field_title">placeholder</span>
+
         <input class="popup-form__input popup-form__input_field_description" name="description"
           placeholder="Короткое описание профиля" minlength=2 maxlenght=200 required>
+        <span class="popup-form__input-error popup-form__input-error_field_description">placeholder</span>
+
         <button class="popup-form__save-button" type="submit" aria-label="Сохранить изменения">Сохранить</button>
       </form>
       <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
@@ -67,8 +71,11 @@
         </h2>
         <input class="popup-form__input popup-form__input_field_picture-name" name="name" placeholder="Название" minlength=1
           maxlenght=30 required>
+        <span class="popup-form__input-error popup-form__input-error_field_picture-name">placeholder</span>
+
         <input class="popup-form__input popup-form__input_field_picture-link" name="link" type="url"
           placeholder="Ссылка на картинку" required>
+        <span class="popup-form__input-error popup-form__input-error_field_picture-link">placeholder</span>
         <button class="popup-form__save-button" type="submit" aria-label="Создать карточку">Создать</button>
       </form>
       <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
@@ -99,5 +106,6 @@
     </li>
   </template>
 
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
