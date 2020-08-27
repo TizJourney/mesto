@@ -1,0 +1,7 @@
+.popup-form__save-button_inactive {
+  border: 1px solid #000;
+  opacity: 0.2;
+  color: #000;
+  background: #E5E5E5;
+  box-sizing: border-box;
+}
