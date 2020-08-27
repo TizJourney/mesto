@@ -43,16 +43,11 @@ const popupFullsizeImageCaption = popupFullsizeImageFigure.querySelector('.fulls
 
 // переменные попапа popup-edit-profile
 const popupEditProfileElement = document.querySelector('.popup-edit-profile');
-const formEditProfile = popupEditProfileElement.querySelector('.popup-form');
-const formEditProfileNameInput = popupEditProfileElement.querySelector('.popup-form__input_field_title');
-const formEditProfileDescriptionInput = popupEditProfileElement.querySelector('.popup-form__input_field_description');
-
+const formEditProfile = document.forms.popup_form_editing_profile;
 
 // переменные попапа popup-add-card
 const popupAddCardElement = document.querySelector('.popup-add-card');
-const formAddCard = popupAddCardElement.querySelector('.popup-form');
-const formAddCardPictureNameInput = popupAddCardElement.querySelector('.popup-form__input_field_picture-name');
-const formAddCardPictureLinkInput = popupAddCardElement.querySelector('.popup-form__input_field_picture-link');
+const formAddCard = document.forms.popup_form_adding_cards;
 
 // переменные для генерации динамических карточек
 const cardContainer = document.querySelector('.elements__card-container')
@@ -79,22 +74,23 @@ allPopups.forEach(function (popupElement) {
 });
 
 document.addEventListener('keydown', (event) => {
-  allPopups.forEach(function (popupElement) {hidePopup(popupElement);});
+  if (event.key === 'Escape') {
+    allPopups.forEach(function (popupElement) {hidePopup(popupElement);});
+  }
 });
 
 // функциональность "Изменить профиль"
 function initAndShowFormEditProfile() {
-  formEditProfileNameInput.value = titleProfile.textContent;
-  formEditProfileDescriptionInput.value = descriptionProfile.textContent;
-
+  formEditProfile.title.value = titleProfile.textContent;
+  formEditProfile.description.value = descriptionProfile.textContent;
   showPopup(popupEditProfileElement);
 }
 
 function submitFormEditProfile(event) {
   event.preventDefault();
 
-  titleProfile.textContent = formEditProfileNameInput.value;
-  descriptionProfile.textContent = formEditProfileDescriptionInput.value;
+  titleProfile.textContent = formEditProfile.title.value;
+  descriptionProfile.textContent = formEditProfile.description.value;
 
   hidePopup(popupEditProfileElement);
 }
@@ -104,15 +100,13 @@ formEditProfile.addEventListener('submit', submitFormEditProfile);
 
 // функциональность "Добавить картинку"
 function initAndShowAddCardPopup() {
-  formAddCardPictureNameInput.value = '';
-  formAddCardPictureLinkInput.value = '';
-
+  formAddCard.reset();
   showPopup(popupAddCardElement);
 }
 
 function submitFormAddCard(event) {
   event.preventDefault();
-  const newCard = makeCardElement(formAddCardPictureNameInput.value, formAddCardPictureLinkInput.value);
+  const newCard = makeCardElement(formAddCard.name.value, formAddCard.link.value);
   cardContainer.prepend(newCard);
 
   hidePopup(popupAddCardElement);
