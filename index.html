@@ -48,9 +48,10 @@
         <h2 class="popup-form__title">
           Редактировать профиль
         </h2>
-        <input class="popup-form__input popup-form__input_field_title" name="title" placeholder="Имя профиля">
+        <input class="popup-form__input popup-form__input_field_title" name="title" placeholder="Имя профиля" required
+          minlength=2 maxlenght=40>
         <input class="popup-form__input popup-form__input_field_description" name="description"
-          placeholder="Короткое описание профиля">
+          placeholder="Короткое описание профиля" minlength=2 maxlenght=200 required>
         <button class="popup-form__save-button" type="submit" aria-label="Сохранить изменения">Сохранить</button>
       </form>
       <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
@@ -64,9 +65,10 @@
         <h2 class="popup-form__title">
           Новое место
         </h2>
-        <input class="popup-form__input popup-form__input_field_picture-name" name="name" placeholder="Название">
-        <input class="popup-form__input popup-form__input_field_picture-link" name="link"
-          placeholder="Ссылка на картинку">
+        <input class="popup-form__input popup-form__input_field_picture-name" name="name" placeholder="Название" minlength=1
+          maxlenght=30 required>
+        <input class="popup-form__input popup-form__input_field_picture-link" name="link" type="url"
+          placeholder="Ссылка на картинку" required>
         <button class="popup-form__save-button" type="submit" aria-label="Создать карточку">Создать</button>
       </form>
       <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
