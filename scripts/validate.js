@@ -41,7 +41,11 @@ const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll('.popup-form__input'));
   const buttonElement = formElement.querySelector('.popup-form__save-button');
 
-  toggleButtonState(inputList, buttonElement);
+  formElement.addEventListener("visibilitychange", function() {
+    if (formElement.visibilityState === 'visible') {
+      toggleButtonState(inputList, buttonElement);
+    }
+  });
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
