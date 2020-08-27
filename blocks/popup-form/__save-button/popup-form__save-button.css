@@ -10,6 +10,7 @@
   line-height: 1.2;
   text-align: center;
   border: none;
+  border-radius: 2px;
 }
 
 .popup-form__save-button:hover {
