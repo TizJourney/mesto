@@ -26,7 +26,7 @@ const initialCards = [
 ];
 
 // общие переменные для всех попапов
-const allPopupCloseButtons = document.querySelectorAll('.popup__close-button')
+const allPopups = document.querySelectorAll('.popup');
 
 // переменные блока profile
 const profileElement = document.querySelector('.profile');
@@ -67,9 +67,15 @@ function hidePopup(element) {
   element.classList.remove('popup_opened');
 }
 
-allPopupCloseButtons.forEach(function (item) {
-  const popupElement = item.closest('.popup');
-  item.addEventListener('click', (event) => { hidePopup(popupElement) });
+allPopups.forEach(function (popupElement) {
+  popupElement.addEventListener('click', (event) => {
+    if (
+      event.target.classList.contains('popup__close-button') ||
+      event.target.classList.contains('popup__overlay')
+    ) {
+      hidePopup(popupElement);
+    }
+  });
 });
 
 // функциональность "Изменить профиль"
