@@ -78,6 +78,10 @@ allPopups.forEach(function (popupElement) {
   });
 });
 
+document.addEventListener('keydown', (event) => {
+  allPopups.forEach(function (popupElement) {hidePopup(popupElement);});
+});
+
 // функциональность "Изменить профиль"
 function initAndShowFormEditProfile() {
   formEditProfileNameInput.value = titleProfile.textContent;
