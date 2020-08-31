@@ -8,10 +8,6 @@
   padding-bottom: 10px;
 }
 
-.popup-form__input:invalid {
-  border-bottom: 1px solid #f00;
-}
-
 @media screen and (max-width: 800px) {
   .popup-form__input {
     font-size: 12px;

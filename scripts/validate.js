@@ -1,12 +1,16 @@
 // поведение отдельных input'ов в форме
 const showInputError = (formElement, inputElement, errorMessage, validationContext) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+
+  inputElement.classList.add(validationContext.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(validationContext.errorClass);
 };
 
 const hideInputError = (formElement, inputElement, validationContext) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+
+  inputElement.classList.remove(validationContext.inputErrorClass);
   errorElement.classList.remove(validationContext.errorClass);
   errorElement.textContent = '';
 };
@@ -43,6 +47,7 @@ const setEventListeners = (formElement, validationContext) => {
 
   formElement.addEventListener("visibilitychange", function() {
     if (formElement.visibilityState === 'visible') {
+      inputList.forEach((inputElement) => {checkInputValidState(formElement, inputElement, validationContext);});
       toggleButtonState(inputList, buttonElement, validationContext);
     }
   });
@@ -72,6 +77,6 @@ enableValidation({
   inputSelector: '.popup-form__input',
   submitButtonSelector: '.popup-form__save-button',
   inactiveButtonClass: 'popup-form__save-button_inactive',
-  //inputErrorClass: 'popup-form__input_type_error',
+  inputErrorClass: 'popup-form__input_type_error',
   errorClass: 'popup-form__input-error_active'
 });
