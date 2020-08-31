@@ -104,28 +104,30 @@ function showFullSizeImagePopup(data) {
   showPopup(popupFullSizeImage);
 }
 
+function handleLikeButton(event) {
+  event.target.classList.toggle('card__like-button_active');
+}
+
+function handleDeleteButton(event) {
+  const cardItem = event.target.closest('.card');
+  cardItem.remove();
+}
+
 function makeCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
+  const cardFullImageButton = cardElement.querySelector('.card__full-image-button');
+  const cardLikeButton = cardElement.querySelector('.card__like-button');
+  const cardTitle = cardElement.querySelector('.card__title');
+  const deleteButton = cardElement.querySelector('.card__delete-button');
+
   cardImage.src = data.link;
   cardImage.alt = `Изображение места ${data.name}`;
-  cardElement.querySelector('.card__title').textContent = data.name;
+  cardTitle.textContent = data.name;
 
-  const cardFullImageButton = cardElement.querySelector('.card__full-image-button');
-  cardFullImageButton.addEventListener('click', function () {
-    showFullSizeImagePopup(data);
-  });
-
-  const cardLikeButton = cardElement.querySelector('.card__like-button');
-  cardLikeButton.addEventListener('click', function () {
-    cardLikeButton.classList.toggle('card__like-button_active');
-  });
-
-  const deleteButton = cardElement.querySelector('.card__delete-button');
-  deleteButton.addEventListener('click', function () {
-    const cardItem = deleteButton.closest('.card');
-    cardItem.remove();
-  });
+  cardFullImageButton.addEventListener('click', () => {showFullSizeImagePopup(data);});
+  cardLikeButton.addEventListener('click', handleLikeButton);
+  deleteButton.addEventListener('click', handleDeleteButton);
 
   return cardElement;
 }
