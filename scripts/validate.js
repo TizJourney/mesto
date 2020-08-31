@@ -45,6 +45,8 @@ const setEventListeners = (formElement, validationContext) => {
   const inputList = Array.from(formElement.querySelectorAll(validationContext.inputSelector));
   const buttonElement = formElement.querySelector(validationContext.submitButtonSelector);
 
+  toggleButtonState(inputList, buttonElement, validationContext );
+
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       checkInputValidState(formElement, inputElement, validationContext);
