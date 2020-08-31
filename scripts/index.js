@@ -34,26 +34,27 @@ function hidePopupCallback(event) {
   }
 }
 
+function handleClosePopupOnClick(event) {
+  if (
+    event.target.classList.contains('popup__close-button') ||
+    event.target.classList.contains('popup__overlay')
+  ) {
+    const popupElement = event.target.closest('.popup');
+    hidePopup(popupElement);
+  }
+}
+
 function showPopup(element) {
   element.classList.add('popup_opened');
+  element.addEventListener('click', handleClosePopupOnClick);
   document.addEventListener('keydown', hidePopupCallback);
 }
 
 function hidePopup(element) {
   element.classList.remove('popup_opened');
+  element.removeEventListener('click', handleClosePopupOnClick);
   document.removeEventListener('keydown', hidePopupCallback);
 }
-
-allPopups.forEach(function (popupElement) {
-  popupElement.addEventListener('click', (event) => {
-    if (
-      event.target.classList.contains('popup__close-button') ||
-      event.target.classList.contains('popup__overlay')
-    ) {
-      hidePopup(popupElement);
-    }
-  });
-});
 
 // функциональность "Изменить профиль"
 function initAndShowFormEditProfile() {
