@@ -9,10 +9,10 @@ const profileElementEditButton = profileElement.querySelector('.profile__edit-bu
 const profileAddButton = profileElement.querySelector('.profile__add-button')
 
 // переменные попапа popup-fullsize-image
-const popupFullsizeImage = document.querySelector('.popup-fullsize-image');
-const popupFullsizeImageFigure = popupFullsizeImage.querySelector('.fullsize-image');
-const popupFullsizeImagePicture = popupFullsizeImageFigure.querySelector('.fullsize-image__picture');
-const popupFullsizeImageCaption = popupFullsizeImageFigure.querySelector('.fullsize-image__caption');
+const popupFullSizeImage = document.querySelector('.popup-fullsize-image');
+const popupFullSizeImageFigure = popupFullSizeImage.querySelector('.fullsize-image');
+const popupFullSizeImagePicture = popupFullSizeImageFigure.querySelector('.fullsize-image__picture');
+const popupFullSizeImageCaption = popupFullSizeImageFigure.querySelector('.fullsize-image__caption');
 
 // переменные попапа popup-edit-profile
 const popupEditProfileElement = document.querySelector('.popup-edit-profile');
@@ -97,12 +97,12 @@ profileAddButton.addEventListener('click', initAndShowAddCardPopup);
 formAddCard.addEventListener('submit', submitFormAddCard);
 
 // генерация динамических карточек
-function showFullsizeImagePopup(name, link) {
-  popupFullsizeImagePicture.src = link;
-  popupFullsizeImagePicture.alt = `Изображение места ${name}`;
-  popupFullsizeImageCaption.textContent = name;
+function showFullSizeImagePopup(name, link) {
+  popupFullSizeImagePicture.src = link;
+  popupFullSizeImagePicture.alt = `Изображение места ${name}`;
+  popupFullSizeImageCaption.textContent = name;
 
-  showPopup(popupFullsizeImage);
+  showPopup(popupFullSizeImage);
 }
 
 function makeCardElement(name, link) {
@@ -114,7 +114,7 @@ function makeCardElement(name, link) {
 
   const cardFullImageButton = cardElement.querySelector('.card__full-image-button');
   cardFullImageButton.addEventListener('click', function () {
-    showFullsizeImagePopup(name, link);
+    showFullSizeImagePopup(name, link);
   });
 
   const cardLikeButton = cardElement.querySelector('.card__like-button');
