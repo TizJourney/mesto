@@ -45,13 +45,6 @@ const setEventListeners = (formElement, validationContext) => {
   const inputList = Array.from(formElement.querySelectorAll(validationContext.inputSelector));
   const buttonElement = formElement.querySelector(validationContext.submitButtonSelector);
 
-  formElement.addEventListener("visibilitychange", function() {
-    if (formElement.visibilityState === 'visible') {
-      inputList.forEach((inputElement) => {checkInputValidState(formElement, inputElement, validationContext);});
-      toggleButtonState(inputList, buttonElement, validationContext);
-    }
-  });
-
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       checkInputValidState(formElement, inputElement, validationContext);
