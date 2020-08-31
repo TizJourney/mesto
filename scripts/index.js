@@ -82,7 +82,11 @@ function initAndShowAddCardPopup() {
 
 function submitFormAddCard(event) {
   event.preventDefault();
-  const newCard = makeCardElement(formAddCard.name.value, formAddCard.link.value);
+  const newCardContent = {
+    name: formAddCard.name.value,
+    link: formAddCard.link.value,
+  }
+  const newCard = makeCardElement(newCardContent);
   cardContainer.prepend(newCard);
 
   hidePopup(popupAddCardElement);
@@ -92,24 +96,24 @@ profileAddButton.addEventListener('click', initAndShowAddCardPopup);
 formAddCard.addEventListener('submit', submitFormAddCard);
 
 // генерация динамических карточек
-function showFullSizeImagePopup(name, link) {
-  popupFullSizeImagePicture.src = link;
-  popupFullSizeImagePicture.alt = `Изображение места ${name}`;
-  popupFullSizeImageCaption.textContent = name;
+function showFullSizeImagePopup(data) {
+  popupFullSizeImagePicture.src = data.link;
+  popupFullSizeImagePicture.alt = `Изображение места ${data.name}`;
+  popupFullSizeImageCaption.textContent = data.name;
 
   showPopup(popupFullSizeImage);
 }
 
-function makeCardElement(name, link) {
+function makeCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
-  cardImage.src = link;
-  cardImage.alt = `Изображение места ${name}`;
-  cardElement.querySelector('.card__title').textContent = name;
+  cardImage.src = data.link;
+  cardImage.alt = `Изображение места ${data.name}`;
+  cardElement.querySelector('.card__title').textContent = data.name;
 
   const cardFullImageButton = cardElement.querySelector('.card__full-image-button');
   cardFullImageButton.addEventListener('click', function () {
-    showFullSizeImagePopup(name, link);
+    showFullSizeImagePopup(data);
   });
 
   const cardLikeButton = cardElement.querySelector('.card__like-button');
@@ -127,7 +131,7 @@ function makeCardElement(name, link) {
 }
 
 function prepareInitialCards() {
-  const cardPreparedElements = initialCards.map((cardContent) => makeCardElement(cardContent['name'], cardContent['link']));
+  const cardPreparedElements = initialCards.map((cardContent) => makeCardElement(cardContent));
   cardContainer.append(...cardPreparedElements);
 }
 
