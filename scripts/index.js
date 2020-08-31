@@ -28,7 +28,6 @@ const cardTemplate = document.querySelector('#card-temlate').content;
 
 // общая функциональность для всех попапов
 function hidePopupCallback(event) {
-  evt.preventDefault();
   const activePopup = document.querySelector('.popup_opened');
   if (event.key === 'Escape') {
     hidePopup(activePopup);
@@ -54,12 +53,6 @@ allPopups.forEach(function (popupElement) {
       hidePopup(popupElement);
     }
   });
-});
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
-    allPopups.forEach(function (popupElement) {hidePopup(popupElement);});
-  }
 });
 
 // функциональность "Изменить профиль"
