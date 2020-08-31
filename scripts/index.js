@@ -121,7 +121,7 @@ function handleDeleteButton(event) {
   cardItem.remove();
 }
 
-function makeCardElement(data) {
+const makeCardElement = (data) => {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
   const cardFullImageButton = cardElement.querySelector('.card__full-image-button');
