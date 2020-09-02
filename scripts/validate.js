@@ -44,8 +44,11 @@ const toggleButtonState = (inputList, buttonElement, validationContext) => {
 const setEventListeners = (formElement, validationContext) => {
   const inputList = Array.from(formElement.querySelectorAll(validationContext.inputSelector));
   const buttonElement = formElement.querySelector(validationContext.submitButtonSelector);
-
   toggleButtonState(inputList, buttonElement, validationContext );
+
+  formElement.addEventListener('reset', (event) => {
+    inputList.forEach((inputElement) => {hideInputError(formElement, inputElement, validationContext);});
+  });
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
