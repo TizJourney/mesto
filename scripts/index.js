@@ -59,8 +59,12 @@ function hidePopup(element) {
 // функциональность "Изменить профиль"
 function initAndShowFormEditProfile() {
   formEditProfile.reset();
+  const inputEvent = new CustomEvent('input');
   formEditProfile.title.value = titleProfile.textContent;
+  formEditProfile.title.dispatchEvent(inputEvent);
+
   formEditProfile.description.value = descriptionProfile.textContent;
+  formEditProfile.description.dispatchEvent(inputEvent);
 
   showPopup(popupEditProfileElement);
 }

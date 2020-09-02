@@ -30,13 +30,22 @@ const hasInvalidInput = (inputList) => {
   })
 };
 
+
+const setButtonEnable = (buttonElement, validationContext) => {
+  buttonElement.classList.remove(validationContext.inactiveButtonClass);
+  buttonElement.removeAttribute('disabled');
+}
+
+const setButtonDisable = (buttonElement, validationContext) => {
+  buttonElement.classList.add(validationContext.inactiveButtonClass);
+  buttonElement.setAttribute('disabled', true);
+}
+
 const toggleButtonState = (inputList, buttonElement, validationContext) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(validationContext.inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
+    setButtonDisable(buttonElement, validationContext);
   } else {
-    buttonElement.classList.remove(validationContext.inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+    setButtonEnable(buttonElement, validationContext);
   }
 };
 
@@ -44,10 +53,15 @@ const toggleButtonState = (inputList, buttonElement, validationContext) => {
 const setEventListeners = (formElement, validationContext) => {
   const inputList = Array.from(formElement.querySelectorAll(validationContext.inputSelector));
   const buttonElement = formElement.querySelector(validationContext.submitButtonSelector);
-  toggleButtonState(inputList, buttonElement, validationContext );
 
+
+  // особое поведение формы после сброса:
+  // даже если в полях есть ошибки валидации, мы их не показываем до первых изменений в поле
+  // но и не даём делать submit
+  // измененения может делать внешний скрипт
   formElement.addEventListener('reset', (event) => {
     inputList.forEach((inputElement) => {hideInputError(formElement, inputElement, validationContext);});
+    setButtonDisable(buttonElement, validationContext);
   });
 
   inputList.forEach((inputElement) => {
