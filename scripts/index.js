@@ -1,8 +1,6 @@
 import initialCards from './initial-сards.js';
-import {Card} from './card.js';
-
-// общие переменные для всех попапов
-const allPopups = document.querySelectorAll('.popup');
+import { Card } from './card.js';
+import { Popup } from './popup.js';
 
 // переменные блока profile
 const profileElement = document.querySelector('.profile');
@@ -12,17 +10,23 @@ const profileElementEditButton = profileElement.querySelector('.profile__edit-bu
 const profileAddButton = profileElement.querySelector('.profile__add-button')
 
 // переменные попапа popup-fullsize-image
-const popupFullSizeImage = document.querySelector('.popup-fullsize-image');
-const popupFullSizeImageFigure = popupFullSizeImage.querySelector('.fullsize-image');
+const popupFullSizeImageElement = document.querySelector('.popup-fullsize-image');
+const popupFullSizeImage = new Popup(popupFullSizeImageElement);
+
+const popupFullSizeImageFigure = popupFullSizeImageElement.querySelector('.fullsize-image');
 const popupFullSizeImagePicture = popupFullSizeImageFigure.querySelector('.fullsize-image__picture');
 const popupFullSizeImageCaption = popupFullSizeImageFigure.querySelector('.fullsize-image__caption');
 
 // переменные попапа popup-edit-profile
 const popupEditProfileElement = document.querySelector('.popup-edit-profile');
+const popupEditProfile = new Popup(popupEditProfileElement);
+
 const formEditProfile = document.forms.popup_form_editing_profile;
 
 // переменные попапа popup-add-card
 const popupAddCardElement = document.querySelector('.popup-add-card');
+const popupAddCard = new Popup(popupAddCardElement);
+
 const formAddCard = document.forms.popup_form_adding_cards;
 
 // переменные для генерации динамических карточек
@@ -69,7 +73,7 @@ function initAndShowFormEditProfile() {
   formEditProfile.description.value = descriptionProfile.textContent;
   formEditProfile.description.dispatchEvent(inputEvent);
 
-  showPopup(popupEditProfileElement);
+  popupEditProfile.show();
 }
 
 function submitFormEditProfile(event) {
@@ -78,7 +82,7 @@ function submitFormEditProfile(event) {
   titleProfile.textContent = formEditProfile.title.value;
   descriptionProfile.textContent = formEditProfile.description.value;
 
-  hidePopup(popupEditProfileElement);
+  popupEditProfile.hide();
 }
 
 profileElementEditButton.addEventListener('click', initAndShowFormEditProfile);
@@ -87,7 +91,7 @@ formEditProfile.addEventListener('submit', submitFormEditProfile);
 // функциональность "Добавить картинку"
 function initAndShowAddCardPopup() {
   formAddCard.reset();
-  showPopup(popupAddCardElement);
+  popupAddCard.show();
 }
 
 function submitFormAddCard(event) {
@@ -99,7 +103,7 @@ function submitFormAddCard(event) {
   const newCard = new Card(newCardContent);
   cardContainer.prepend(newCard.createElement());
 
-  hidePopup(popupAddCardElement);
+  popupAddCard.hide();
 }
 
 profileAddButton.addEventListener('click', initAndShowAddCardPopup);
