@@ -1,3 +1,5 @@
+import initialCards from './initial-сards.js';
+
 // общие переменные для всех попапов
 const allPopups = document.querySelectorAll('.popup');
 
