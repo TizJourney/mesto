@@ -1,4 +1,5 @@
 import initialCards from './initial-сards.js';
+import {Card} from './card.js';
 
 // общие переменные для всех попапов
 const allPopups = document.querySelectorAll('.popup');
@@ -26,7 +27,7 @@ const formAddCard = document.forms.popup_form_adding_cards;
 
 // переменные для генерации динамических карточек
 const cardContainer = document.querySelector('.elements__card-container')
-const cardTemplate = document.querySelector('#card-temlate').content;
+
 
 // общая функциональность для всех попапов
 function hidePopupCallback(event) {
@@ -95,8 +96,8 @@ function submitFormAddCard(event) {
     name: formAddCard.name.value,
     link: formAddCard.link.value,
   }
-  const newCard = makeCardElement(newCardContent);
-  cardContainer.prepend(newCard);
+  const newCard = new Card(newCardContent);
+  cardContainer.prepend(newCard.createElement());
 
   hidePopup(popupAddCardElement);
 }
@@ -105,44 +106,11 @@ profileAddButton.addEventListener('click', initAndShowAddCardPopup);
 formAddCard.addEventListener('submit', submitFormAddCard);
 
 // генерация динамических карточек
-function showFullSizeImagePopup(data) {
-  popupFullSizeImagePicture.src = data.link;
-  popupFullSizeImagePicture.alt = `Изображение места ${data.name}`;
-  popupFullSizeImageCaption.textContent = data.name;
-
-  showPopup(popupFullSizeImage);
-}
-
-function handleLikeButton(event) {
-  event.target.classList.toggle('card__like-button_active');
-}
-
-function handleDeleteButton(event) {
-  const cardItem = event.target.closest('.card');
-  cardItem.remove();
-}
-
-const makeCardElement = (data) => {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector('.card__image');
-  const cardFullImageButton = cardElement.querySelector('.card__full-image-button');
-  const cardLikeButton = cardElement.querySelector('.card__like-button');
-  const cardTitle = cardElement.querySelector('.card__title');
-  const deleteButton = cardElement.querySelector('.card__delete-button');
-
-  cardImage.src = data.link;
-  cardImage.alt = `Изображение места ${data.name}`;
-  cardTitle.textContent = data.name;
-
-  cardFullImageButton.addEventListener('click', () => {showFullSizeImagePopup(data);});
-  cardLikeButton.addEventListener('click', handleLikeButton);
-  deleteButton.addEventListener('click', handleDeleteButton);
-
-  return cardElement;
-}
-
 function prepareInitialCards() {
-  const cardPreparedElements = initialCards.map((cardContent) => makeCardElement(cardContent));
+  const cardPreparedElements = initialCards.map((cardContent) => {
+    const card = new Card(cardContent);
+    return card.createElement();
+  });
   cardContainer.append(...cardPreparedElements);
 }
 
