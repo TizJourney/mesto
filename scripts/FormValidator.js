@@ -73,22 +73,22 @@ export class FormValidator {
   };
 
   //общие функции обработки событий
-  _setEventListeners(formElement) {
-    const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = formElement.querySelector(this._submitButtonSelector);
+  _setEventListeners() {
+    const inputList = Array.from(this._element.querySelectorAll(this._inputSelector));
+    const buttonElement = this._element.querySelector(this._submitButtonSelector);
 
     // особое поведение формы после сброса:
     // даже если в полях есть ошибки валидации, мы их не показываем до первых изменений в поле
     // но и не даём делать submit
     // измененения может делать внешний скрипт
-    formElement.addEventListener('reset', (event) => {
-      inputList.forEach((inputElement) => { this._hideInputError(formElement, inputElement); });
+    this._element.addEventListener('reset', (event) => {
+      inputList.forEach((inputElement) => { this._hideInputError(this._element, inputElement); });
       this._setButtonDisable(buttonElement);
     });
 
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        this._checkInputValidState(formElement, inputElement);
+        this._checkInputValidState(this._element, inputElement);
         this._toggleButtonState(inputList, buttonElement);
       });
     });
@@ -98,6 +98,6 @@ export class FormValidator {
     this._element.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    this._setEventListeners(this._element);
+    this._setEventListeners();
   }
 }
