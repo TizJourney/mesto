@@ -1,5 +1,5 @@
 import initialCards from './initial-cards.js';
-import { Card } from './Card.js';
+import { Card } from './Cards.js';
 import { showPopup, hidePopup } from './popup.js';
 import { FormValidator, defaultFormSelectors } from './FormValidator.js';
 // общие переменные для всех попапов
