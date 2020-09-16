@@ -1,7 +1,7 @@
 import { showPopup } from './popup.js';
 
 export class Card {
-  constructor (data, popupData, cardTemplateSelector='#card-temlate') {
+  constructor(data, popupData, cardTemplateSelector = '#card-temlate') {
     this._imageLink = data.link;
     this._name = data.name;
     this._popupData = popupData;
@@ -34,7 +34,7 @@ export class Card {
     const cardLikeButton = this._cardElement.querySelector('.card__like-button');
     const deleteButton = this._cardElement.querySelector('.card__delete-button');
 
-    cardFullImageButton.addEventListener('click', () => {this._showFullSizeImagePopup(this._popupData)});
+    cardFullImageButton.addEventListener('click', () => { this._showFullSizeImagePopup(this._popupData) });
     cardLikeButton.addEventListener('click', this._handleLikeButton);
     deleteButton.addEventListener('click', this._handleDeleteButton);
   }
