@@ -1,4 +1,4 @@
-import initialCards from './initial-сards.js';
+import initialCards from './initial-cards.js';
 import { Card } from './Card.js';
 import { showPopup, hidePopup } from './popup.js';
 import { FormValidator, defaultFormSelectors } from './FormValidator.js';
