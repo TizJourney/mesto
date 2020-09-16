@@ -100,24 +100,4 @@ export class FormValidator {
     });
     this._setEventListeners(this._element);
   }
-
-
-  //   const formList = Array.from(document.querySelectorAll(this._formSelector));
-
-  //   formList.forEach((formElement) => {
-  //     formElement.addEventListener('submit', (evt) => {
-  //       evt.preventDefault();
-  //     });
-  //     setEventListeners(formElement);
-  //   });
-  // };
 }
-// // Инициализация
-// enableValidation({
-//   formSelector: '.popup-form',
-//   inputSelector: '.popup-form__input',
-//   submitButtonSelector: '.popup-form__save-button',
-//   inactiveButtonClass: 'popup-form__save-button_inactive',
-//   inputErrorClass: 'popup-form__input_type_error',
-//   errorClass: 'popup-form__input-error_active'
-// });
