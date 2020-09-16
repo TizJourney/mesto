@@ -1,7 +1,7 @@
 import initialCards from './initial-сards.js';
-import {Card} from './card.js';
+import {Card} from './Card.js';
 import { showPopup, hidePopup } from './popup.js';
-
+import { FormValidator, defaultFormSelectors } from './FormValidator.js';
 // общие переменные для всех попапов
 const allPopups = document.querySelectorAll('.popup');
 
@@ -91,3 +91,10 @@ function prepareInitialCards() {
 // инициализация страницы
 prepareInitialCards();
 
+//инициализация валидации для всех форм
+const formList = Array.from(document.querySelectorAll(defaultFormSelectors.formSelector));
+
+formList.forEach((formElement) => {
+  const formValidatorItem = new FormValidator(defaultFormSelectors, formElement);
+  formValidatorItem.enableValidation();
+});
