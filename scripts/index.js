@@ -1,5 +1,6 @@
 import initialCards from './initial-сards.js';
 import {Card} from './card.js';
+import { showPopup, hidePopup } from './popup.js';
 
 // общие переменные для всех попапов
 const allPopups = document.querySelectorAll('.popup');
@@ -14,8 +15,12 @@ const profileAddButton = profileElement.querySelector('.profile__add-button')
 // переменные попапа popup-fullsize-image
 const popupFullSizeImage = document.querySelector('.popup-fullsize-image');
 const popupFullSizeImageFigure = popupFullSizeImage.querySelector('.fullsize-image');
-const popupFullSizeImagePicture = popupFullSizeImageFigure.querySelector('.fullsize-image__picture');
-const popupFullSizeImageCaption = popupFullSizeImageFigure.querySelector('.fullsize-image__caption');
+
+const popupFullSizeImageData = {
+  element: popupFullSizeImage,
+  picture: popupFullSizeImageFigure.querySelector('.fullsize-image__picture'),
+  caption: popupFullSizeImageFigure.querySelector('.fullsize-image__caption'),
+}
 
 // переменные попапа popup-edit-profile
 const popupEditProfileElement = document.querySelector('.popup-edit-profile');
@@ -27,37 +32,6 @@ const formAddCard = document.forms.popup_form_adding_cards;
 
 // переменные для генерации динамических карточек
 const cardContainer = document.querySelector('.elements__card-container')
-
-
-// общая функциональность для всех попапов
-function hidePopupCallback(event) {
-  const activePopup = document.querySelector('.popup_opened');
-  if (event.key === 'Escape') {
-    hidePopup(activePopup);
-  }
-}
-
-function handleClosePopupOnClick(event) {
-  if (
-    event.target.classList.contains('popup__close-button') ||
-    event.target.classList.contains('popup__overlay')
-  ) {
-    const popupElement = event.target.closest('.popup');
-    hidePopup(popupElement);
-  }
-}
-
-function showPopup(element) {
-  element.classList.add('popup_opened');
-  element.addEventListener('click', handleClosePopupOnClick);
-  document.addEventListener('keydown', hidePopupCallback);
-}
-
-function hidePopup(element) {
-  element.classList.remove('popup_opened');
-  element.removeEventListener('click', handleClosePopupOnClick);
-  document.removeEventListener('keydown', hidePopupCallback);
-}
 
 // функциональность "Изменить профиль"
 function initAndShowFormEditProfile() {
@@ -96,7 +70,7 @@ function submitFormAddCard(event) {
     name: formAddCard.name.value,
     link: formAddCard.link.value,
   }
-  const newCard = new Card(newCardContent);
+  const newCard = new Card(newCardContent, popupFullSizeImageData);
   cardContainer.prepend(newCard.createElement());
 
   hidePopup(popupAddCardElement);
@@ -108,7 +82,7 @@ formAddCard.addEventListener('submit', submitFormAddCard);
 // генерация динамических карточек
 function prepareInitialCards() {
   const cardPreparedElements = initialCards.map((cardContent) => {
-    const card = new Card(cardContent);
+    const card = new Card(cardContent, popupFullSizeImageData);
     return card.createElement();
   });
   cardContainer.append(...cardPreparedElements);

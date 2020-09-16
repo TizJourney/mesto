@@ -1,7 +1,10 @@
+import { showPopup } from './popup.js';
+
 export class Card {
-  constructor (data, cardTemplateSelector='#card-temlate') {
+  constructor (data, popupData, cardTemplateSelector='#card-temlate') {
     this._imageLink = data.link;
     this._name = data.name;
+    this._popupData = popupData;
 
     this._cardTemplate = document.querySelector(cardTemplateSelector).content;
   }
@@ -12,9 +15,9 @@ export class Card {
     titleElement.textContent = this._name;
   }
 
-  _showFullSizeImagePopup(popupFullSizeImagePicture, popupFullSizeImageCaption) {
-    _fillImageContext(popupFullSizeImagePicture, popupFullSizeImageCaption);
-    showPopup(popupFullSizeImage);
+  _showFullSizeImagePopup(popupData) {
+    this._fillImageContext(popupData.picture, popupData.caption);
+    showPopup(popupData.element);
   }
 
   _handleLikeButton(event) {
@@ -31,7 +34,7 @@ export class Card {
     const cardLikeButton = this._cardElement.querySelector('.card__like-button');
     const deleteButton = this._cardElement.querySelector('.card__delete-button');
 
-    cardFullImageButton.addEventListener('click', () => {this._showFullSizeImagePopup(popupFullSizeImagePicture, popupFullSizeImageCaption);});
+    cardFullImageButton.addEventListener('click', () => {this._showFullSizeImagePopup(this._popupData)});
     cardLikeButton.addEventListener('click', this._handleLikeButton);
     deleteButton.addEventListener('click', this._handleDeleteButton);
   }
