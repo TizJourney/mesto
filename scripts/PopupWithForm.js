@@ -13,8 +13,10 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    //todo
-    return {}
+    return Object.values(this._formInputs).reduce((dict, el) => {
+      dict[el.name] = el.value;
+      return dict;
+    }, {});
   }
 
   setValues(values) {
@@ -28,7 +30,7 @@ export default class PopupWithForm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    //todo: добавить обработчик формы
+    this._formElement.addEventListener('submit', this._submitHandler);
   }
 
   close()  {

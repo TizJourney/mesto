@@ -11,36 +11,35 @@ import UserInfo from './UserInfo.js';
 const profileElement = document.querySelector('.profile');
 const profileElementEditButton = profileElement.querySelector('.profile__edit-button');
 const profileAddButton = profileElement.querySelector('.profile__add-button')
-const userInfoObject = new UserInfo('.profile__title', '.profile__description');
-
-// переменные попапа popup-fullsize-image
-const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
-
-// переменные попапа popup-edit-profile
-const popupEditProfileElement = document.querySelector('.popup-edit-profile');
-const formEditProfile = document.forms.popup_form_editing_profile;
-
-const popupEditProfile = new PopupWithForm('.popup-edit-profile', () => {});
 
 // переменные попапа popup-add-card
 const popupAddCardElement = document.querySelector('.popup-add-card');
 const formAddCard = document.forms.popup_form_adding_cards;
 
+// функциональность "передача данных в блок профиля"
+const userInfoObject = new UserInfo('.profile__title', '.profile__description');
+
+// функциональность "ппап с развёрнутым изображением"
+const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
+
 // функциональность "Изменить профиль"
-function initAndShowFormEditProfile() {
+const submitFormEditProfileCallback = (event) => {
+  event.preventDefault();
+  const {title, description} = popupEditProfile._getInputValues();
+
+  userInfoObject.setUserInfo(title, description);
+  popupEditProfile.close();
+};
+
+const popupEditProfile = new PopupWithForm('.popup-edit-profile', submitFormEditProfileCallback);
+
+const initAndShowFormEditProfile = () => {
   const [title, description] = userInfoObject.getUserInfo();
   popupEditProfile.setValues({title, description});
   popupEditProfile.open();
 }
 
-function submitFormEditProfile(event) {
-  event.preventDefault();
-  userInfoObject.setUserInfo(formEditProfile.title.value, formEditProfile.description.value);
-  popupEditProfile.close();
-}
-
 profileElementEditButton.addEventListener('click', initAndShowFormEditProfile);
-formEditProfile.addEventListener('submit', submitFormEditProfile);
 
 // динимические карточки
 const cardContainer = new Section(
