@@ -1,6 +1,5 @@
 import initialCards from './initial-cards.js';
 import { Card } from './Card.js';
-import { showPopup, hidePopup } from './popup.js';
 import { FormValidator, defaultFormSelectors } from './FormValidator.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
@@ -21,7 +20,7 @@ const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
 // функциональность "Изменить профиль"
 const submitFormEditProfileCallback = (event) => {
   event.preventDefault();
-  const {title, description} = popupEditProfile._getInputValues();
+  const { title, description } = popupEditProfile._getInputValues();
 
   userInfoObject.setUserInfo(title, description);
   popupEditProfile.close();
@@ -31,13 +30,13 @@ const popupEditProfile = new PopupWithForm('.popup-edit-profile', submitFormEdit
 
 const initAndShowFormEditProfile = () => {
   const [title, description] = userInfoObject.getUserInfo();
-  popupEditProfile.setValues({title, description});
+  popupEditProfile.setValues({ title, description });
   popupEditProfile.open();
 }
 
 profileElementEditButton.addEventListener('click', initAndShowFormEditProfile);
 
-//Функциональность "динимические карточки"
+// функциональность "динимические карточки"
 const cardContainer = new Section(
   {
     items: initialCards,
@@ -61,7 +60,7 @@ const submitFormAddCardCallback = (event) => {
 const popupAddCard = new PopupWithForm('.popup-add-card', submitFormAddCardCallback);
 profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));
 
-//инициализация валидации для всех форм
+// инициализация валидации для всех форм
 const formList = Array.from(document.querySelectorAll(defaultFormSelectors.formSelector));
 
 formList.forEach((formElement) => {
