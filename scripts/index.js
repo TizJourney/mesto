@@ -3,6 +3,7 @@ import { Card } from './Card.js';
 import { showPopup, hidePopup } from './popup.js';
 import { FormValidator, defaultFormSelectors } from './FormValidator.js';
 import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
 import Section from './Section.js';
 import UserInfo from './UserInfo.js';
 
@@ -19,6 +20,8 @@ const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
 const popupEditProfileElement = document.querySelector('.popup-edit-profile');
 const formEditProfile = document.forms.popup_form_editing_profile;
 
+const popupEditProfile = new PopupWithForm('.popup-edit-profile', () => {});
+
 // переменные попапа popup-add-card
 const popupAddCardElement = document.querySelector('.popup-add-card');
 const formAddCard = document.forms.popup_form_adding_cards;
@@ -26,16 +29,8 @@ const formAddCard = document.forms.popup_form_adding_cards;
 // функциональность "Изменить профиль"
 function initAndShowFormEditProfile() {
   const [title, description] = userInfoObject.getUserInfo();
-
-  formEditProfile.reset();
-  const inputEvent = new CustomEvent('input');
-  formEditProfile.title.value = title;
-  formEditProfile.title.dispatchEvent(inputEvent);
-
-  formEditProfile.description.value = description;
-  formEditProfile.description.dispatchEvent(inputEvent);
-
-  showPopup(popupEditProfileElement);
+  popupEditProfile.setValues({title, description});
+  popupEditProfile.open();
 }
 
 function submitFormEditProfile(event) {
