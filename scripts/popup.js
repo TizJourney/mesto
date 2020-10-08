@@ -10,7 +10,6 @@ export default class Popup {
   }
 
   _handleClosePopupOnClick(event) {
-    debugger;
     if (
       event.target.classList.contains('popup__close-button') ||
       event.target.classList.contains('popup__overlay')
