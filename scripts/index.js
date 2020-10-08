@@ -36,7 +36,7 @@ function initAndShowFormEditProfile() {
 function submitFormEditProfile(event) {
   event.preventDefault();
   userInfoObject.setUserInfo(formEditProfile.title.value, formEditProfile.description.value);
-  hidePopup(popupEditProfileElement);
+  popupEditProfile.close();
 }
 
 profileElementEditButton.addEventListener('click', initAndShowFormEditProfile);
@@ -47,7 +47,6 @@ const cardContainer = new Section(
   {
     items: initialCards,
     renderer: (cardItem) => {
-
       const card = new Card(cardItem, popupFullSizeImage.open.bind(popupFullSizeImage));
       cardContainer.addItem(card.createElement());
     }
