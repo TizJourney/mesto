@@ -3,6 +3,7 @@ import { Card } from './Card.js';
 import { showPopup, hidePopup } from './popup.js';
 import { FormValidator, defaultFormSelectors } from './FormValidator.js';
 import PopupWithImage from './PopupWithImage.js';
+import Section from './Section.js';
 
 // переменные блока profile
 const profileElement = document.querySelector('.profile');
@@ -21,9 +22,6 @@ const formEditProfile = document.forms.popup_form_editing_profile;
 // переменные попапа popup-add-card
 const popupAddCardElement = document.querySelector('.popup-add-card');
 const formAddCard = document.forms.popup_form_adding_cards;
-
-// переменные для генерации динамических карточек
-const cardContainer = document.querySelector('.elements__card-container')
 
 // функциональность "Изменить профиль"
 function initAndShowFormEditProfile() {
@@ -50,6 +48,18 @@ function submitFormEditProfile(event) {
 profileElementEditButton.addEventListener('click', initAndShowFormEditProfile);
 formEditProfile.addEventListener('submit', submitFormEditProfile);
 
+// динимические карточки
+const cardContainer = new Section(
+  {
+    items: initialCards,
+    renderer: (cardItem) => {
+
+      const card = new Card(cardItem, popupFullSizeImage.open.bind(popupFullSizeImage));
+      cardContainer.addItem(card.createElement());
+    }
+  }, '.elements__card-container');
+
+
 // функциональность "Добавить картинку"
 function initAndShowAddCardPopup() {
   formAddCard.reset();
@@ -63,25 +73,13 @@ function submitFormAddCard(event) {
     link: formAddCard.link.value,
   }
   const newCard = new Card(newCardContent, popupFullSizeImage.open.bind(popupFullSizeImage));
-  cardContainer.prepend(newCard.createElement());
+  cardContainer.addItem(newCard.createElement());
 
   hidePopup(popupAddCardElement);
 }
 
 profileAddButton.addEventListener('click', initAndShowAddCardPopup);
 formAddCard.addEventListener('submit', submitFormAddCard);
-
-// генерация динамических карточек
-function prepareInitialCards() {
-  const cardPreparedElements = initialCards.map((cardContent) => {
-    const card = new Card(cardContent, popupFullSizeImage.open.bind(popupFullSizeImage));
-    return card.createElement();
-  });
-  cardContainer.append(...cardPreparedElements);
-}
-
-// инициализация страницы
-prepareInitialCards();
 
 //инициализация валидации для всех форм
 const formList = Array.from(document.querySelectorAll(defaultFormSelectors.formSelector));
@@ -90,3 +88,6 @@ formList.forEach((formElement) => {
   const formValidatorItem = new FormValidator(defaultFormSelectors, formElement);
   formValidatorItem.enableValidation();
 });
+
+// генерация динамических карточек
+cardContainer.renderItems();
