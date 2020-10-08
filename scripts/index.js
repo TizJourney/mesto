@@ -2,6 +2,7 @@ import initialCards from './initial-cards.js';
 import { Card } from './Card.js';
 import { showPopup, hidePopup } from './popup.js';
 import { FormValidator, defaultFormSelectors } from './FormValidator.js';
+import PopupWithImage from './PopupWithImage.js';
 
 // переменные блока profile
 const profileElement = document.querySelector('.profile');
@@ -11,14 +12,7 @@ const profileElementEditButton = profileElement.querySelector('.profile__edit-bu
 const profileAddButton = profileElement.querySelector('.profile__add-button')
 
 // переменные попапа popup-fullsize-image
-const popupFullSizeImage = document.querySelector('.popup-fullsize-image');
-const popupFullSizeImageFigure = popupFullSizeImage.querySelector('.fullsize-image');
-
-const popupFullSizeImageData = {
-  element: popupFullSizeImage,
-  picture: popupFullSizeImageFigure.querySelector('.fullsize-image__picture'),
-  caption: popupFullSizeImageFigure.querySelector('.fullsize-image__caption'),
-}
+const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
 
 // переменные попапа popup-edit-profile
 const popupEditProfileElement = document.querySelector('.popup-edit-profile');
@@ -68,7 +62,7 @@ function submitFormAddCard(event) {
     name: formAddCard.name.value,
     link: formAddCard.link.value,
   }
-  const newCard = new Card(newCardContent, popupFullSizeImageData);
+  const newCard = new Card(newCardContent, popupFullSizeImage.open.bind(popupFullSizeImage));
   cardContainer.prepend(newCard.createElement());
 
   hidePopup(popupAddCardElement);
@@ -80,7 +74,7 @@ formAddCard.addEventListener('submit', submitFormAddCard);
 // генерация динамических карточек
 function prepareInitialCards() {
   const cardPreparedElements = initialCards.map((cardContent) => {
-    const card = new Card(cardContent, popupFullSizeImageData);
+    const card = new Card(cardContent, popupFullSizeImage.open.bind(popupFullSizeImage));
     return card.createElement();
   });
   cardContainer.append(...cardPreparedElements);

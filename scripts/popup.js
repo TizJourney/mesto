@@ -1,6 +1,6 @@
 export default class Popup {
   constructor(popupSelector) {
-    self._popupElement = document.querySelector(popupSelector);
+    this._popupElement = document.querySelector(popupSelector);
   }
 
   _handleEscClose(event) {
@@ -10,6 +10,7 @@ export default class Popup {
   }
 
   _handleClosePopupOnClick(event) {
+    debugger;
     if (
       event.target.classList.contains('popup__close-button') ||
       event.target.classList.contains('popup__overlay')
@@ -19,22 +20,22 @@ export default class Popup {
   }
 
   setEventListeners() {
-    self._popupElement.addEventListener('click', this._handleEscClose.bind(this));
-    self._popupElement.addEventListener('keydown', this._handleClosePopupOnClick.bind(this));
+    this._popupElement.addEventListener('click', this._handleClosePopupOnClick.bind(this));
+    document.addEventListener('keydown', this._handleEscClose.bind(this));
   }
 
   removeEventListener() {
-    self._popupElement.removeEventListener('click', this._handleEscClose);
-    self._popupElement.removeEventListener('keydown', this._handleClosePopupOnClick);
+    this._popupElement.removeEventListener('click', this._handleClosePopupOnClick);
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
   open() {
-    self._popupElement.classList.add('popup_opened');
+    this._popupElement.classList.add('popup_opened');
     this.setEventListeners()
   }
 
   close() {
-    self._popupElement.classList.remove('popup_opened');
+    this._popupElement.classList.remove('popup_opened');
     this.removeEventListener();
   }
 }

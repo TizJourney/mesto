@@ -1,15 +1,16 @@
-import Popup from './popup';
+import Popup from './popup.js';
+import imageContext from './imageContext.js';
 
 export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._imageElement = this._popupElement.querySelector('.fullsize-image');
+    this._imageElement = this._popupElement.querySelector('.fullsize-image__picture');
+    this._captionElement = this._popupElement.querySelector('.fullsize-image__caption')
   }
 
-  open({picture, caption}) {
+  open(data) {
     super.open();
-    this._imageElement.src = picture;
-    this._imageElement.alt = `Изображение места ${caption}`;
-    this._imageElement.textContent = caption;
+    const imageContextObject = new imageContext(data);
+    imageContextObject.setImageContext(this._imageElement, this._captionElement);
   }
 }
