@@ -4,13 +4,13 @@ import { showPopup, hidePopup } from './popup.js';
 import { FormValidator, defaultFormSelectors } from './FormValidator.js';
 import PopupWithImage from './PopupWithImage.js';
 import Section from './Section.js';
+import UserInfo from './UserInfo.js';
 
 // переменные блока profile
 const profileElement = document.querySelector('.profile');
-const titleProfile = profileElement.querySelector('.profile__title');
-const descriptionProfile = profileElement.querySelector('.profile__description');
 const profileElementEditButton = profileElement.querySelector('.profile__edit-button');
 const profileAddButton = profileElement.querySelector('.profile__add-button')
+const userInfoObject = new UserInfo('.profile__title', '.profile__description');
 
 // переменные попапа popup-fullsize-image
 const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
@@ -25,12 +25,14 @@ const formAddCard = document.forms.popup_form_adding_cards;
 
 // функциональность "Изменить профиль"
 function initAndShowFormEditProfile() {
+  const [title, description] = userInfoObject.getUserInfo();
+
   formEditProfile.reset();
   const inputEvent = new CustomEvent('input');
-  formEditProfile.title.value = titleProfile.textContent;
+  formEditProfile.title.value = title;
   formEditProfile.title.dispatchEvent(inputEvent);
 
-  formEditProfile.description.value = descriptionProfile.textContent;
+  formEditProfile.description.value = description;
   formEditProfile.description.dispatchEvent(inputEvent);
 
   showPopup(popupEditProfileElement);
@@ -38,10 +40,7 @@ function initAndShowFormEditProfile() {
 
 function submitFormEditProfile(event) {
   event.preventDefault();
-
-  titleProfile.textContent = formEditProfile.title.value;
-  descriptionProfile.textContent = formEditProfile.description.value;
-
+  userInfoObject.setUserInfo(formEditProfile.title.value, formEditProfile.description.value);
   hidePopup(popupEditProfileElement);
 }
 
