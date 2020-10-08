@@ -9,8 +9,8 @@ export class Card {
     this._handleCardClick = handleCardClick;
   }
 
-  _handleLikeButton(event) {
-    event.target.classList.toggle('card__like-button_active');
+  _handleLikeButton() {
+    this.classList.toggle('card__like-button_active');
   }
 
   _handleDeleteButton(event) {
@@ -28,7 +28,7 @@ export class Card {
     const deleteButton = this._cardElement.querySelector('.card__delete-button');
 
     cardFullImageButton.addEventListener('click', this._handleCardClickCallback.bind(this));
-    cardLikeButton.addEventListener('click', this._handleLikeButton);
+    cardLikeButton.addEventListener('click', this._handleLikeButton.bind(cardLikeButton));
     deleteButton.addEventListener('click', this._handleDeleteButton);
   }
 
