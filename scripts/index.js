@@ -12,14 +12,10 @@ const profileElement = document.querySelector('.profile');
 const profileElementEditButton = profileElement.querySelector('.profile__edit-button');
 const profileAddButton = profileElement.querySelector('.profile__add-button')
 
-// переменные попапа popup-add-card
-const popupAddCardElement = document.querySelector('.popup-add-card');
-const formAddCard = document.forms.popup_form_adding_cards;
-
 // функциональность "передача данных в блок профиля"
 const userInfoObject = new UserInfo('.profile__title', '.profile__description');
 
-// функциональность "ппап с развёрнутым изображением"
+// функциональность "попап с развёрнутым изображением"
 const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
 
 // функциональность "Изменить профиль"
@@ -41,7 +37,7 @@ const initAndShowFormEditProfile = () => {
 
 profileElementEditButton.addEventListener('click', initAndShowFormEditProfile);
 
-// динимические карточки
+//Функциональность "динимические карточки"
 const cardContainer = new Section(
   {
     items: initialCards,
@@ -52,26 +48,18 @@ const cardContainer = new Section(
   }, '.elements__card-container');
 
 
-// функциональность "Добавить картинку"
-function initAndShowAddCardPopup() {
-  formAddCard.reset();
-  showPopup(popupAddCardElement);
-}
-
-function submitFormAddCard(event) {
+// функциональность "добавить картинку"
+const submitFormAddCardCallback = (event) => {
   event.preventDefault();
-  const newCardContent = {
-    name: formAddCard.name.value,
-    link: formAddCard.link.value,
-  }
+  const newCardContent = popupAddCard._getInputValues();
   const newCard = new Card(newCardContent, popupFullSizeImage.open.bind(popupFullSizeImage));
   cardContainer.addItem(newCard.createElement());
 
-  hidePopup(popupAddCardElement);
+  popupAddCard.close();
 }
 
-profileAddButton.addEventListener('click', initAndShowAddCardPopup);
-formAddCard.addEventListener('submit', submitFormAddCard);
+const popupAddCard = new PopupWithForm('.popup-add-card', submitFormAddCardCallback);
+profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));
 
 //инициализация валидации для всех форм
 const formList = Array.from(document.querySelectorAll(defaultFormSelectors.formSelector));
