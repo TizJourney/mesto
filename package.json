@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/TizJourney/mesto/issues"
   },
-  "homepage": "https://github.com/TizJourney/mesto#readme"
+  "homepage": "https://github.com/TizJourney/mesto#readme",
+  "devDependencies": {
+    "webpack": "^4.44.2"
+  }
 }
