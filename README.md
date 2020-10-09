@@ -1,6 +1,6 @@
 # Проект: Место
 
-[Публикация проекта на GitPages](https://tizjourney.github.io/mesto)
+[Публикация проекта на GitPages](https://tizjourney.github.io/mesto) (временно недоступен)
 
 ## Описание
 
