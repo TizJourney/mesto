@@ -1,7 +1,7 @@
 {
   "name": "mesto",
   "version": "1.0.0",
-  "description": "**Проект 4: Место**",
+  "description": "Проект Место",
   "main": "index.js",
   "scripts": {
     "build": "rm -rf dist && webpack",
@@ -31,7 +31,8 @@
     "mini-css-extract-plugin": "^1.0.0",
     "postcss-loader": "^4.0.4",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "core-js": "^3.6.5"
