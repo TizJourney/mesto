@@ -1,13 +1,4 @@
-export const defaultFormSelectors = {
-  formSelector: '.popup-form',
-  inputSelector: '.popup-form__input',
-  submitButtonSelector: '.popup-form__save-button',
-  inactiveButtonClass: 'popup-form__save-button_inactive',
-  inputErrorClass: 'popup-form__input_type_error',
-  errorClass: 'popup-form__input-error_active'
-}
-
-export class FormValidator {
+export default class FormValidator {
   constructor(
     selectors,
     element

@@ -1,4 +1,4 @@
-export default [
+export const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -24,3 +24,18 @@ export default [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+// переменные блока profile
+const profileElement = document.querySelector('.profile');
+export const profileElementEditButton = profileElement.querySelector('.profile__edit-button');
+export const profileAddButton = profileElement.querySelector('.profile__add-button')
+
+// селекторы для валидации форм
+export const defaultFormSelectors = {
+  formSelector: '.popup-form',
+  inputSelector: '.popup-form__input',
+  submitButtonSelector: '.popup-form__save-button',
+  inactiveButtonClass: 'popup-form__save-button_inactive',
+  inputErrorClass: 'popup-form__input_type_error',
+  errorClass: 'popup-form__input-error_active'
+}

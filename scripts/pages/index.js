@@ -1,15 +1,16 @@
-import initialCards from '../util/constants.js';
+import {
+  initialCards,
+  profileElementEditButton,
+  profileAddButton,
+  defaultFormSelectors,
+} from '../util/constants.js';
+
 import { Card } from '../components/Card.js';
-import { FormValidator, defaultFormSelectors } from '../components/FormValidator.js';
+import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
-
-// переменные блока profile
-const profileElement = document.querySelector('.profile');
-const profileElementEditButton = profileElement.querySelector('.profile__edit-button');
-const profileAddButton = profileElement.querySelector('.profile__add-button')
 
 // функциональность "передача данных в блок профиля"
 const userInfoObject = new UserInfo('.profile__title', '.profile__description');
@@ -17,7 +18,7 @@ const userInfoObject = new UserInfo('.profile__title', '.profile__description');
 // функциональность "попап с развёрнутым изображением"
 const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
 
-// функциональность "Изменить профиль"
+// функциональность "изменить профиль"
 const submitFormEditProfileCallback = (event) => {
   event.preventDefault();
   const { title, description } = popupEditProfile._getInputValues();
