@@ -1,12 +1,13 @@
 export default class imageContext {
-  constructor({name, link}) {
-    this._link = link;
-    this._name = name;
+  constructor(parentElement, imageSelector, titleSelector) {
+    this._imageElement = parentElement.querySelector(imageSelector);
+    this._titleElement = parentElement.querySelector(titleSelector)
+
   }
 
-  setImageContext(imageElement, titleElement) {
-    imageElement.src = this._link;
-    imageElement.alt = `Изображение места ${this._name}`;
-    titleElement.textContent = this._name;
+  set({ link, name }) {
+    this._imageElement.src = link;
+    this._imageElement.alt = `Изображение места ${name}`;
+    this._titleElement.textContent = name;
   }
 }

@@ -3,8 +3,6 @@ import imageContext from './imageContext.js';
 export class Card {
   constructor(data, handleCardClick, cardTemplateSelector = '#card-temlate') {
     this._data = data;
-    this._imageContextObject = new imageContext(data);
-
     this._cardTemplate = document.querySelector(cardTemplateSelector).content;
     this._handleCardClick = handleCardClick;
   }
@@ -39,10 +37,9 @@ export class Card {
 
     this._cardElement = this._cardTemplate.cloneNode(true);
 
-    const cardTitle = this._cardElement.querySelector('.card__title');
-    const cardImage = this._cardElement.querySelector('.card__image');
+    this._imageContextObject = new imageContext(this._cardElement, '.card__image', '.card__title');
+    this._imageContextObject.set(this._data);
 
-    this._imageContextObject.setImageContext(cardImage, cardTitle);
     this._addEventListeners();
 
     return this._cardElement;
