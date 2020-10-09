@@ -1,4 +1,4 @@
-export default class imageContext {
+export default class ImageContext {
   constructor(parentElement, imageSelector, titleSelector) {
     this._imageElement = parentElement.querySelector(imageSelector);
     this._titleElement = parentElement.querySelector(titleSelector)

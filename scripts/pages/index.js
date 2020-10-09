@@ -1,10 +1,10 @@
-import initialCards from './initial-cards.js';
-import { Card } from './Card.js';
-import { FormValidator, defaultFormSelectors } from './FormValidator.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import Section from './Section.js';
-import UserInfo from './UserInfo.js';
+import initialCards from '../util/constants.js';
+import { Card } from '../components/Card.js';
+import { FormValidator, defaultFormSelectors } from '../components/FormValidator.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
 
 // переменные блока profile
 const profileElement = document.querySelector('.profile');

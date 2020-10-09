@@ -1,4 +1,4 @@
-import imageContext from './imageContext.js';
+import ImageContext from './ImageContext.js';
 
 export class Card {
   constructor(imageData, handleCardClick, cardTemplateSelector = '#card-temlate') {
@@ -37,7 +37,7 @@ export class Card {
 
     this._cardElement = this._cardTemplate.cloneNode(true);
 
-    this._imageContextObject = new imageContext(this._cardElement, '.card__image', '.card__title');
+    this._imageContextObject = new ImageContext(this._cardElement, '.card__image', '.card__title');
     this._imageContextObject.set(this._imageData);
 
     this._addEventListeners();
