@@ -19,6 +19,7 @@ const userInfoObject = new UserInfo('.profile__title', '.profile__description');
 
 // функциональность "попап с развёрнутым изображением"
 const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
+popupFullSizeImage.setEventListeners();
 
 // функциональность "изменить профиль"
 const submitFormEditProfileCallback = (event) => {
@@ -30,6 +31,7 @@ const submitFormEditProfileCallback = (event) => {
 };
 
 const popupEditProfile = new PopupWithForm('.popup-edit-profile', submitFormEditProfileCallback);
+popupEditProfile.setEventListeners();
 
 const initAndShowFormEditProfile = () => {
   const [title, description] = userInfoObject.getUserInfo();
@@ -61,6 +63,7 @@ const submitFormAddCardCallback = (event) => {
 }
 
 const popupAddCard = new PopupWithForm('.popup-add-card', submitFormAddCardCallback);
+popupAddCard.setEventListeners();
 profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));
 
 // инициализация валидации для всех форм
