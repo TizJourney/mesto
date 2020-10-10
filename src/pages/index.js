@@ -40,13 +40,15 @@ const initAndShowFormEditProfile = () => {
 profileElementEditButton.addEventListener('click', initAndShowFormEditProfile);
 
 // функциональность "динимические карточки"
+function addNewCard(cardItem) {
+  const card = new Card(cardItem, popupFullSizeImage.open.bind(popupFullSizeImage));
+  cardContainer.addItem(card.createElement());
+}
+
 const cardContainer = new Section(
   {
     items: initialCards,
-    renderer: (cardItem) => {
-      const card = new Card(cardItem, popupFullSizeImage.open.bind(popupFullSizeImage));
-      cardContainer.addItem(card.createElement());
-    }
+    renderer: addNewCard,
   }, '.elements__card-container');
 
 
@@ -54,9 +56,7 @@ const cardContainer = new Section(
 const submitFormAddCardCallback = (event) => {
   event.preventDefault();
   const newCardContent = popupAddCard._getInputValues();
-  const newCard = new Card(newCardContent, popupFullSizeImage.open.bind(popupFullSizeImage));
-  cardContainer.addItem(newCard.createElement());
-
+  addNewCard(newCardContent);
   popupAddCard.close();
 }
 
