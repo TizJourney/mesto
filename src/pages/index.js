@@ -22,10 +22,7 @@ const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
 popupFullSizeImage.setEventListeners();
 
 // функциональность "изменить профиль"
-const submitFormEditProfileCallback = (event) => {
-  event.preventDefault();
-  const { title, description } = popupEditProfile._getInputValues();
-
+const submitFormEditProfileCallback = ({ title, description }) => {
   userInfoObject.setUserInfo(title, description);
   popupEditProfile.close();
 };
@@ -55,9 +52,7 @@ const cardContainer = new Section(
 
 
 // функциональность "добавить картинку"
-const submitFormAddCardCallback = (event) => {
-  event.preventDefault();
-  const newCardContent = popupAddCard._getInputValues();
+const submitFormAddCardCallback = (newCardContent) => {
   addNewCard(newCardContent);
   popupAddCard.close();
 }
