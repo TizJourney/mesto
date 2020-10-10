@@ -21,7 +21,7 @@ export default class PopupWithForm extends Popup {
 
   setValues(values) {
     const inputEvent = new CustomEvent('input');
-    for (let name in values) {
+    for (const name in values) {
       const input = this._formInputs[name];
       input.value = values[name];
       input.dispatchEvent(inputEvent);
