@@ -1,5 +1,3 @@
-import ImageContext from './ImageContext.js';
-
 export class Card {
   constructor(imageData, handleCardClick, cardTemplateSelector = '#card-temlate') {
     this._imageData = imageData;
@@ -37,8 +35,12 @@ export class Card {
 
     this._cardElement = this._cardTemplate.cloneNode(true);
 
-    this._imageContextObject = new ImageContext(this._cardElement, '.card__image', '.card__title');
-    this._imageContextObject.set(this._imageData);
+    const imageElement = this._cardElement.querySelector('.card__image');
+    const titleElement = this._cardElement.querySelector('.card__title');
+
+    imageElement.src = this._imageData.link;
+    imageElement.alt = `Изображение места ${this._imageData.name}`;
+    titleElement.textContent = this._imageData.name;
 
     this._addEventListeners();
 
