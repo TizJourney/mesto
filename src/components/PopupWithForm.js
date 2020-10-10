@@ -28,6 +28,10 @@ export default class PopupWithForm extends Popup {
     }
   }
 
+  resetForm() {
+    this._formElement.reset();
+  }
+
   _submitHandlerCallback(event) {
     event.preventDefault();
     this._submitHandler(this._getInputValues());

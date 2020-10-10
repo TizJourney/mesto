@@ -59,7 +59,9 @@ const submitFormAddCardCallback = (newCardContent) => {
 
 const popupAddCard = new PopupWithForm('.popup-add-card', submitFormAddCardCallback);
 popupAddCard.setEventListeners();
+
 profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));
+
 
 // инициализация валидации для всех форм
 const formList = Array.from(document.querySelectorAll(defaultFormSelectors.formSelector));
@@ -71,3 +73,7 @@ formList.forEach((formElement) => {
 
 // генерация динамических карточек
 cardContainer.renderItems();
+
+// инициализация формы попапа "Добавить карточку"
+// при сбросе формы происходит пересчёт валидации и блокируется кнопка "sumbit"
+popupAddCard.resetForm();
