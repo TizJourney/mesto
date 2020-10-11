@@ -37,10 +37,12 @@ export default class Card {
 
     const imageElement = this._cardElement.querySelector('.card__image');
     const titleElement = this._cardElement.querySelector('.card__title');
+    const cardLikeNumber = this._cardElement.querySelector('.card__like-number');
 
     imageElement.src = this._imageData.link;
     imageElement.alt = `Изображение места ${this._imageData.name}`;
     titleElement.textContent = this._imageData.name;
+    cardLikeNumber.textContent = this._imageData.likes.length;
 
     this._addEventListeners();
 
