@@ -21,4 +21,9 @@ export default class PopupConfirm extends Popup {
     this._context = context;
     super.open();
   }
+
+  close() {
+    this._context = null;
+    super.close();
+  }
 }
