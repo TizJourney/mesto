@@ -8,47 +8,38 @@ export default class Api {
     this._baseUrl = baseUrl;
   }
 
-  _parseAndCheckStatus(internalRequest) {
-    return internalRequest.then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка ${res.status}: ${res.statusText}`);
-    })
-  }
+  _request(tailUrl, method='GET', data=null) {
+    const requestParams = {
+      method: method,
+      headers: {
+        authorization: token
+      },
+    }
 
-  _get(tailUrl) {
-    return this._parseAndCheckStatus(
-      fetch(this._baseUrl + tailUrl, {
-        headers: {
-          authorization: token
+    if (data != null) {
+      requestParams['body'] = JSON.stringify(data);
+      requestParams.headers['Content-Type'] = 'application/json';
+    }
+
+    return fetch(this._baseUrl + tailUrl, requestParams)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
         }
+        return Promise.reject(`Ошибка ${res.status}: ${res.statusText}`);
       })
-    )
-  }
-
-  _patch(tailUrl, data) {
-    return this._parseAndCheckStatus(
-      fetch(this._baseUrl + tailUrl, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: token
-        },
-        body: JSON.stringify(data)
-      }))
   }
 
   getInitialCardsPromise() {
-    return this._get('cards');
+    return this._request('cards');
   }
 
   getUserInfoPromise() {
-    return this._get('users/me');
+    return this._request('users/me');
   }
 
   updateUserInfoPromise(data) {
-    return this._patch('users/me', data);
+    return this._request('users/me', 'PATCH', data);
   }
 
 
