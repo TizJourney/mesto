@@ -1,7 +1,6 @@
 import './index.css';
 
 import {
-  initialCards,
   profileElementEditButton,
   profileAddButton,
   defaultFormSelectors,
@@ -13,7 +12,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
-import Request from '../components/Request.js';
+import Api from '../components/Api.js';
 
 // функциональность "передача данных в блок профиля"
 const userInfoObject = new UserInfo('.profile__title', '.profile__description');
@@ -24,8 +23,9 @@ popupFullSizeImage.setEventListeners();
 
 // функциональность "изменить профиль"
 const submitFormEditProfileCallback = ({ title, description }) => {
-  userInfoObject.setUserInfo(title, description);
-  popupEditProfile.close();
+  userInfoObject.setUserInfoPromise(title, description)
+  .catch((err) => { console.log(err); })
+  .finally(() => { popupEditProfile.close(); });
 };
 
 const popupEditProfile = new PopupWithForm('.popup-edit-profile', submitFormEditProfileCallback);
@@ -66,8 +66,8 @@ profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard))
 const formList = Array.from(document.querySelectorAll(defaultFormSelectors.formSelector));
 
 //динамическая загрузка карточек
-const initialCardsRequest = new Request('cards');
-const initialCardsPromise = initialCardsRequest.get()
+const apiObject = new Api();
+const initialCardsPromise = apiObject.getInitialCardsPromise()
   .then((cards) => {
     cardContainer.setItems(cards);
     cardContainer.renderItems();
@@ -76,7 +76,7 @@ const initialCardsPromise = initialCardsRequest.get()
 // инициализация данных из сети
 const initPromises = [
   initialCardsPromise,
-  userInfoObject.initUserInfo(),
+  userInfoObject.initUserInfoPromise(),
 ]
 
 Promise.all(initPromises)

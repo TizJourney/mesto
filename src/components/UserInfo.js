@@ -1,16 +1,21 @@
-import Request from './Request.js';
+import Api from './Api.js';
 
 export default class UserInfo {
   constructor(titleSelector, descriptionSelector) {
     this.titleElement = document.querySelector(titleSelector);
     this.descriptionElement = document.querySelector(descriptionSelector);
+    this._apiObject = new Api();
     this._request = new Request('users/me');
   }
 
-  initUserInfo() {
-    this._request.get().then(({ name, avatar, about }) => {
-      this.setUserInfo(name, about);
-    })
+  _setInfo({name, avatar, about}) {
+    this.titleElement.textContent = name;
+    this.descriptionElement.textContent = about;
+  }
+
+  initUserInfoPromise() {
+    return this._apiObject.getUserInfoPromise()
+    .then((data) => { this._setInfo(data); })
   }
 
   getUserInfo() {
@@ -20,14 +25,9 @@ export default class UserInfo {
     ]
   }
 
-  setUserInfo(title, description) {
-    this._request.patch({ name: title, about: description })
-      .then(({ name, about }) => {
-        this.titleElement.textContent = name;
-        this.descriptionElement.textContent = about;
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+  setUserInfoPromise(title, description) {
+    return this._apiObject.updateUserInfoPromise({ name: title, about: description })
+      .then((data) => { this._setInfo(data); })
+      .catch((err) => { console.log(err); })
   }
 }

@@ -3,9 +3,9 @@ import {
   baseUrl
 } from '../util/constants.js';
 
-export default class Request {
+export default class Api {
   constructor(urlTail) {
-    this._url = baseUrl + urlTail;
+    this._baseUrl = baseUrl;
   }
 
   _parseAndCheckStatus(internalRequest) {
@@ -17,9 +17,9 @@ export default class Request {
     })
   }
 
-  get() {
+  _get(tailUrl) {
     return this._parseAndCheckStatus(
-      fetch(this._url, {
+      fetch(this._baseUrl + tailUrl, {
         headers: {
           authorization: token
         }
@@ -27,9 +27,9 @@ export default class Request {
     )
   }
 
-  patch(data) {
+  _patch(tailUrl, data) {
     return this._parseAndCheckStatus(
-      fetch(this._url, {
+      fetch(this._baseUrl + tailUrl, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -38,4 +38,18 @@ export default class Request {
         body: JSON.stringify(data)
       }))
   }
+
+  getInitialCardsPromise() {
+    return this._get('cards');
+  }
+
+  getUserInfoPromise() {
+    return this._get('users/me');
+  }
+
+  updateUserInfoPromise(data) {
+    return this._patch('users/me', data);
+  }
+
+
 }
