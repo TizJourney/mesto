@@ -1,21 +1,22 @@
 export default class Card {
-  constructor(imageData, handleCardClick, cardTemplateSelector = '#card-temlate') {
+  constructor(imageData, handleCardClick, handleCardDelete, cardTemplateSelector = '#card-temlate') {
     this._imageData = imageData;
     this._cardTemplate = document.querySelector(cardTemplateSelector).content;
     this._handleCardClick = handleCardClick;
+    this._handleCardDelete = handleCardDelete;
   }
 
   _handleLikeButton() {
     this.classList.toggle('card__like-button_active');
   }
 
-  _handleDeleteButton(event) {
-    const cardItem = event.target.closest('.card');
-    cardItem.remove();
+  _handleCardClickCallback() {
+      this._handleCardClick(this._imageData);
   }
 
-  _handleCardClickCallback(event) {
-      this._handleCardClick(this._imageData);
+  _handleCardDeleteCallback(event) {
+    const cardItem = event.target.closest('.card');
+    this._handleCardDelete(cardItem);
   }
 
   _addEventListeners() {
@@ -25,7 +26,7 @@ export default class Card {
 
     cardFullImageButton.addEventListener('click', this._handleCardClickCallback.bind(this));
     cardLikeButton.addEventListener('click', this._handleLikeButton.bind(cardLikeButton));
-    deleteButton.addEventListener('click', this._handleDeleteButton);
+    deleteButton.addEventListener('click', this._handleCardDeleteCallback.bind(this));
   }
 
   createElement() {

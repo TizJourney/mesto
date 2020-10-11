@@ -87,8 +87,21 @@
     <div class="popup__internal-content">
       <figure class="popup__internal-content-item fullsize-image">
         <img class="fullsize-image__picture" src="#" alt="placeholder">
-        <figcaption class="fullsize-image__caption">Называние</figcaption>
+        <figcaption class="fullsize-image__caption"></figcaption>
       </figure>
+      <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
+    </div>
+  </div>
+
+  <div class="popup-delete-card popup">
+    <div class="popup__overlay popup__overlay_shadow_strong"></div>
+    <div class="popup__internal-content">
+      <form class="popup__internal-content-item popup-form" name="popup_form_delete" novalidate>
+        <h2 class="popup-form__title">
+          Вы уверены?
+        </h2>
+        <button class="popup-form__save-button" type="submit" aria-label="Подтвердить удаление">Да</button>
+      </form>
       <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
     </div>
   </div>

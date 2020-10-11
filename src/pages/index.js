@@ -10,6 +10,7 @@ import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupConfirm from '../components/PopupConfirm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
@@ -42,9 +43,22 @@ const initAndShowFormEditProfile = () => {
 
 profileElementEditButton.addEventListener('click', initAndShowFormEditProfile);
 
+// функциональность "удалить карточку"
+const handleDeleteButton = (cardElement) => {
+  popupDeleteCard.open(cardElement);
+}
+
+const submitDeleteCardCallback = (cardElement) => {
+  cardElement.remove();
+  popupDeleteCard.close();
+}
+
+const popupDeleteCard = new PopupConfirm('.popup-delete-card', submitDeleteCardCallback);
+popupDeleteCard.setEventListeners();
+
 // функциональность "динимические карточки"
 function addNewCard(cardItem) {
-  const card = new Card(cardItem, popupFullSizeImage.open.bind(popupFullSizeImage));
+  const card = new Card(cardItem, popupFullSizeImage.open.bind(popupFullSizeImage), handleDeleteButton);
   cardContainer.addItem(card.createElement());
 }
 
