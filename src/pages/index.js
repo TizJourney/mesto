@@ -28,8 +28,8 @@ popupFullSizeImage.setEventListeners();
 // функциональность "изменить профиль"
 const submitFormEditProfileCallback = ({ title, description }) => {
   userInfoObject.setUserInfoPromise(title, description)
-  .catch((err) => { console.log(err); })
-  .finally(() => { popupEditProfile.close(); });
+    .catch((err) => { console.log(err); })
+    .finally(() => { popupEditProfile.close(); });
 };
 
 const popupEditProfile = new PopupWithForm('.popup-edit-profile', submitFormEditProfileCallback);
@@ -48,13 +48,13 @@ const handleDeleteButton = (cardElement) => {
   popupDeleteCard.open(cardElement);
 }
 
-const submitDeleteCardCallback = ({id, element}) => {
+const submitDeleteCardCallback = ({ id, element }) => {
   apiObject.removeCard(id)
-  .then(() => {
-    element.remove();
-  })
-  .catch((err) => { console.log(err); })
-  .finally(() => { popupDeleteCard.close(); })
+    .then(() => {
+      element.remove();
+    })
+    .catch((err) => { console.log(err); })
+    .finally(() => { popupDeleteCard.close(); })
 }
 
 const popupDeleteCard = new PopupConfirm('.popup-delete-card', submitDeleteCardCallback);
@@ -74,13 +74,13 @@ const cardContainer = new Section(
   }, '.elements__card-container');
 
 // функциональность "добавить картинку"
-const submitFormAddCardCallback = (newCardContent) => {
+function submitFormAddCardCallback(newCardContent) {
   apiObject.addCardPromise(newCardContent)
-  .then((data) => {
-    renderCard(data);
-  })
-  .catch((err) => { console.log(err); })
-  .finally(() => { popupAddCard.close(); })
+    .then((data) => {
+      renderCard(data);
+    })
+    .catch((err) => { console.log(err); })
+    .finally(() => { popupAddCard.close(); });
 }
 
 const popupAddCard = new PopupWithForm('.popup-add-card', submitFormAddCardCallback);
