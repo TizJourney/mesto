@@ -1,7 +1,16 @@
+import Request from './Request.js';
+
 export default class UserInfo {
   constructor(titleSelector, descriptionSelector) {
     this.titleElement = document.querySelector(titleSelector);
     this.descriptionElement = document.querySelector(descriptionSelector);
+  }
+
+  initUserInfo() {
+    const request = new Request('users/me');
+    request.get().then(({name, avatar, about}) => {
+      this.setUserInfo(name, about);
+    })
   }
 
   getUserInfo() {

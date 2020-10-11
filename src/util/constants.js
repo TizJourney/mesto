@@ -39,3 +39,7 @@ export const defaultFormSelectors = {
   inputErrorClass: 'popup-form__input_type_error',
   errorClass: 'popup-form__input-error_active'
 }
+
+// параметры запросов по сети
+export const baseUrl = 'https://mesto.nomoreparties.co/v1/cohort-16/';
+export const token = 'adb6c92a-f083-4346-8ae1-e127bac171f9';

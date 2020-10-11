@@ -16,6 +16,7 @@ import UserInfo from '../components/UserInfo.js';
 
 // функциональность "передача данных в блок профиля"
 const userInfoObject = new UserInfo('.profile__title', '.profile__description');
+userInfoObject.initUserInfo();
 
 // функциональность "попап с развёрнутым изображением"
 const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
