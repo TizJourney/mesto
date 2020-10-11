@@ -9,7 +9,7 @@ export default class PopupConfirm extends Popup {
 
   _submitHandlerCallback(event) {
     event.preventDefault();
-    this._submitHandler(this._targetElement);
+    this._submitHandler(this._context);
   }
 
   setEventListeners() {
@@ -17,8 +17,8 @@ export default class PopupConfirm extends Popup {
     this._formElement.addEventListener('submit', this._submitHandlerCallback.bind(this));
   }
 
-  open(targetElement)  {
-    this._targetElement = targetElement;
+  open(context)  {
+    this._context = context;
     super.open();
   }
 }

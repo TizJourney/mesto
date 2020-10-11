@@ -45,4 +45,8 @@ export default class Api {
   updateUserInfoPromise(data) {
     return this._request('users/me', 'PATCH', data);
   }
+
+  removeCard(id) {
+    return this._request(`cards/${id}`, 'DELETE');
+  }
 }

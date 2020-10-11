@@ -17,7 +17,7 @@ export default class Card {
 
   _handleCardDeleteCallback(event) {
     const cardItem = event.target.closest('.card');
-    this._handleCardDelete(cardItem);
+    this._handleCardDelete({id: this._imageData._id, element: cardItem});
   }
 
   _addEventListeners() {

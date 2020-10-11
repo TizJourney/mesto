@@ -48,9 +48,13 @@ const handleDeleteButton = (cardElement) => {
   popupDeleteCard.open(cardElement);
 }
 
-const submitDeleteCardCallback = (cardElement) => {
-  cardElement.remove();
-  popupDeleteCard.close();
+const submitDeleteCardCallback = ({id, element}) => {
+  apiObject.removeCard(id)
+  .then(() => {
+    element.remove();
+  })
+  .catch((err) => { console.log(err); })
+  .finally(() => { popupDeleteCard.close(); })
 }
 
 const popupDeleteCard = new PopupConfirm('.popup-delete-card', submitDeleteCardCallback);
