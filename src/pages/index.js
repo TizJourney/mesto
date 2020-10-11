@@ -13,10 +13,10 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
+import Request from '../components/Request.js';
 
 // функциональность "передача данных в блок профиля"
 const userInfoObject = new UserInfo('.profile__title', '.profile__description');
-userInfoObject.initUserInfo();
 
 // функциональность "попап с развёрнутым изображением"
 const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
@@ -47,10 +47,9 @@ function addNewCard(cardItem) {
 
 const cardContainer = new Section(
   {
-    items: initialCards,
+    items: [],
     renderer: addNewCard,
   }, '.elements__card-container');
-
 
 // функциональность "добавить картинку"
 const submitFormAddCardCallback = (newCardContent) => {
@@ -63,17 +62,32 @@ popupAddCard.setEventListeners();
 
 profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));
 
-
 // инициализация валидации для всех форм
 const formList = Array.from(document.querySelectorAll(defaultFormSelectors.formSelector));
+
+//динамическая загрузка карточек
+const initialCardsRequest = new Request('cards');
+const initialCardsPromise = initialCardsRequest.get()
+  .then((cards) => {
+    cardContainer.setItems(cards);
+    cardContainer.renderItems();
+  });
+
+// инициализация данных из сети
+const initPromises = [
+  initialCardsPromise,
+  userInfoObject.initUserInfo(),
+]
+
+Promise.all(initPromises)
+  .catch((err) => {
+    console.log(err);
+  })
 
 formList.forEach((formElement) => {
   const formValidatorItem = new FormValidator(defaultFormSelectors, formElement);
   formValidatorItem.enableValidation();
 });
-
-// генерация динамических карточек
-cardContainer.renderItems();
 
 // инициализация формы попапа "Добавить карточку"
 // при сбросе формы происходит пересчёт валидации и блокируется кнопка "submit"

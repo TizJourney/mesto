@@ -20,10 +20,6 @@ export default class Request {
         }
         return Promise.reject(`Ошибка ${res.status}: ${res.statusText}`);
       })
-      .catch((err) => {
-        //обработать ошибку загрузки данных
-        console.log(err);
-      })
   }
 
 }

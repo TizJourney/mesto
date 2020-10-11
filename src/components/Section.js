@@ -9,6 +9,10 @@ export default class Section {
     this._containerElement.innerHTML = '';
   }
 
+  setItems(items) {
+    this._items = items;
+  }
+
   renderItems() {
     this.clear();
     this._items.forEach((item) => {
