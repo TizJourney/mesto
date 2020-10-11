@@ -49,4 +49,12 @@ export default class Api {
   removeCard(id) {
     return this._request(`cards/${id}`, 'DELETE');
   }
+
+  setLike(id) {
+    return this._request(`cards/likes/${id}`, 'PUT');
+  }
+
+  removeLike(id) {
+    return this._request(`cards/likes/${id}`, 'DELETE');
+  }
 }

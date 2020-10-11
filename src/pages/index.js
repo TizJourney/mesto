@@ -62,8 +62,7 @@ popupDeleteCard.setEventListeners();
 
 // функциональность "динимические карточки"
 function renderCard(cardItem) {
-  const isOwner = userInfoObject.getUserId() === cardItem.owner._id;
-  const card = new Card(cardItem, isOwner, popupFullSizeImage.open.bind(popupFullSizeImage), handleDeleteButton);
+  const card = new Card(cardItem, userInfoObject.getUserId(), popupFullSizeImage.open.bind(popupFullSizeImage), handleDeleteButton);
   cardContainer.addItem(card.createElement());
 }
 
