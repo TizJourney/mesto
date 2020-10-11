@@ -14,6 +14,9 @@ import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
+// классы для работы с api
+const apiObject = new Api();
+
 // функциональность "передача данных в блок профиля"
 const userInfoObject = new UserInfo('.profile__title', '.profile__description');
 
@@ -53,8 +56,12 @@ const cardContainer = new Section(
 
 // функциональность "добавить картинку"
 const submitFormAddCardCallback = (newCardContent) => {
-  addNewCard(newCardContent);
-  popupAddCard.close();
+  apiObject.addCardPromise(newCardContent)
+  .then((data) => {
+    addNewCard(data);
+  })
+  .catch((err) => { console.log(err); })
+  .finally(() => { popupAddCard.close(); })
 }
 
 const popupAddCard = new PopupWithForm('.popup-add-card', submitFormAddCardCallback);
@@ -66,7 +73,6 @@ profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard))
 const formList = Array.from(document.querySelectorAll(defaultFormSelectors.formSelector));
 
 //динамическая загрузка карточек
-const apiObject = new Api();
 const initialCardsPromise = apiObject.getInitialCardsPromise()
   .then((cards) => {
     cardContainer.setItems(cards);
@@ -80,9 +86,7 @@ const initPromises = [
 ]
 
 Promise.all(initPromises)
-  .catch((err) => {
-    console.log(err);
-  })
+  .catch((err) => { console.log(err); })
 
 formList.forEach((formElement) => {
   const formValidatorItem = new FormValidator(defaultFormSelectors, formElement);

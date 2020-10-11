@@ -34,6 +34,10 @@ export default class Api {
     return this._request('cards');
   }
 
+  addCardPromise(data) {
+    return this._request('cards', 'POST', data);
+  }
+
   getUserInfoPromise() {
     return this._request('users/me');
   }
@@ -41,6 +45,4 @@ export default class Api {
   updateUserInfoPromise(data) {
     return this._request('users/me', 'PATCH', data);
   }
-
-
 }
