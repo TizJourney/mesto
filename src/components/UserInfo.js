@@ -8,14 +8,18 @@ export default class UserInfo {
     this._request = new Request('users/me');
   }
 
-  _setInfo({name, avatar, about}) {
+  _setInfo({name, avatar, about, _id}) {
     this.titleElement.textContent = name;
     this.descriptionElement.textContent = about;
+    this._userId = _id;
   }
 
   initUserInfoPromise() {
     return this._apiObject.getUserInfoPromise()
-    .then((data) => { this._setInfo(data); })
+    .then((data) => {
+      this._setInfo(data);
+      return Promise.resolve();
+    })
   }
 
   getUserInfo() {
@@ -23,6 +27,10 @@ export default class UserInfo {
       this.titleElement.textContent,
       this.descriptionElement.textContent
     ]
+  }
+
+  getUserId() {
+    return this._userId;
   }
 
   setUserInfoPromise(title, description) {

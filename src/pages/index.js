@@ -57,22 +57,23 @@ const popupDeleteCard = new PopupConfirm('.popup-delete-card', submitDeleteCardC
 popupDeleteCard.setEventListeners();
 
 // функциональность "динимические карточки"
-function addNewCard(cardItem) {
-  const card = new Card(cardItem, popupFullSizeImage.open.bind(popupFullSizeImage), handleDeleteButton);
+function renderCard(cardItem) {
+  const isOwner = userInfoObject.getUserId() === cardItem.owner._id;
+  const card = new Card(cardItem, isOwner, popupFullSizeImage.open.bind(popupFullSizeImage), handleDeleteButton);
   cardContainer.addItem(card.createElement());
 }
 
 const cardContainer = new Section(
   {
     items: [],
-    renderer: addNewCard,
+    renderer: renderCard,
   }, '.elements__card-container');
 
 // функциональность "добавить картинку"
 const submitFormAddCardCallback = (newCardContent) => {
   apiObject.addCardPromise(newCardContent)
   .then((data) => {
-    addNewCard(data);
+    renderCard(data);
   })
   .catch((err) => { console.log(err); })
   .finally(() => { popupAddCard.close(); })
@@ -83,24 +84,20 @@ popupAddCard.setEventListeners();
 
 profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));
 
-// инициализация валидации для всех форм
-const formList = Array.from(document.querySelectorAll(defaultFormSelectors.formSelector));
-
-//динамическая загрузка карточек
-const initialCardsPromise = apiObject.getInitialCardsPromise()
+// инициализация данных из сети
+userInfoObject.initUserInfoPromise()
+  .then(() => {
+    return apiObject.getInitialCardsPromise();
+  })
   .then((cards) => {
     cardContainer.setItems(cards);
     cardContainer.renderItems();
-  });
-
-// инициализация данных из сети
-const initPromises = [
-  initialCardsPromise,
-  userInfoObject.initUserInfoPromise(),
-]
-
-Promise.all(initPromises)
+    return Promise.resolve();
+  })
   .catch((err) => { console.log(err); })
+
+// инициализация валидации для всех форм
+const formList = Array.from(document.querySelectorAll(defaultFormSelectors.formSelector));
 
 formList.forEach((formElement) => {
   const formValidatorItem = new FormValidator(defaultFormSelectors, formElement);

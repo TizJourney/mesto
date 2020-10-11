@@ -9,6 +9,7 @@
   background-image: url('../../../images/trashbin.svg');
   background-size: contain;
   background-repeat: no-repeat;
+  visibility: hidden;
 }
 
 .card__delete-button:hover {
