@@ -4,11 +4,11 @@ export default class UserInfo {
   constructor(titleSelector, descriptionSelector) {
     this.titleElement = document.querySelector(titleSelector);
     this.descriptionElement = document.querySelector(descriptionSelector);
+    this._request = new Request('users/me');
   }
 
   initUserInfo() {
-    const request = new Request('users/me');
-    request.get().then(({name, avatar, about}) => {
+    this._request.get().then(({ name, avatar, about }) => {
       this.setUserInfo(name, about);
     })
   }
@@ -21,7 +21,13 @@ export default class UserInfo {
   }
 
   setUserInfo(title, description) {
-    this.titleElement.textContent = title;
-    this.descriptionElement.textContent = description;
+    this._request.patch({ name: title, about: description })
+      .then(({ name, about }) => {
+        this.titleElement.textContent = name;
+        this.descriptionElement.textContent = about;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 }
