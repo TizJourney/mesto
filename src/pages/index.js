@@ -134,7 +134,7 @@ formList.forEach((formElement) => {
   formValidatorItem.enableValidation();
 });
 
-// инициализация формы попапа "Добавить карточку"
+// инициализация формы попапа "Добавить карточку" и "Редактировать аватар"
 // при сбросе формы происходит пересчёт валидации и блокируется кнопка "submit"
 popupAddCard.resetForm();
 popupEditAvatar.resetForm();
