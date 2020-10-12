@@ -4,14 +4,12 @@ import PopupError from './PopupError.js';
 
 
 export default class Card {
-  constructor(imageData, userId, handleCardClick, handleCardDelete, cardTemplateSelector = '#card-temlate') {
+  constructor(imageData, userId, handleCardClick, handleCardDelete, handleLikeButton, cardTemplateSelector = '#card-temlate') {
     this._userId = userId;
     this._cardTemplate = document.querySelector(cardTemplateSelector).content;
     this._handleCardClick = handleCardClick;
     this._handleCardDelete = handleCardDelete;
-
-    this._apiObject = new Api();
-    this._popupErrorObject = new PopupError();
+    this._handleLikeButton = handleLikeButton;
 
     this._setImageData(imageData);
   }
@@ -19,26 +17,24 @@ export default class Card {
   _setImageData(imageData) {
     this._imageData = imageData;
     this._isOwner = this._userId === imageData.owner._id;
-    this._isLiked = this._imageData.likes.some((user) => { return user._id === this._userId});
+    this._isLiked = this._imageData.likes.some((user) => { return user._id === this._userId });
   }
 
-  _handleLikeButton() {
-    const apiLikeFunction = this._isLiked ? this._apiObject.removeLikePromise : this._apiObject.setLikePromise;
-    apiLikeFunction.bind(this._apiObject)(this._imageData._id)
-    .then((data) => {
-      this._setImageData(data);
-      this._updateLikeStatus();
-    })
-    .catch((err) => this._popupErrorObject.show(err));
+  _handleLikeButtonCallback() {
+    this._handleLikeButton(this._isLiked, this._imageData._id)
+      .then((data) => {
+        this._setImageData(data);
+        this._updateLikeStatus();
+      })
   }
 
   _handleCardClickCallback() {
-      this._handleCardClick(this._imageData);
+    this._handleCardClick(this._imageData);
   }
 
   _handleCardDeleteCallback(event) {
     const cardItem = event.target.closest('.card');
-    this._handleCardDelete({id: this._imageData._id, element: cardItem});
+    this._handleCardDelete({ id: this._imageData._id, element: cardItem });
   }
 
   _addEventListeners() {
@@ -46,7 +42,7 @@ export default class Card {
     const cardLikeButton = this._cardElement.querySelector('.card__like-button');
 
     cardFullImageButton.addEventListener('click', this._handleCardClickCallback.bind(this));
-    cardLikeButton.addEventListener('click', this._handleLikeButton.bind(this));
+    cardLikeButton.addEventListener('click', this._handleLikeButtonCallback.bind(this));
 
     if (this._isOwner) {
       const deleteButton = this._cardElement.querySelector('.card__delete-button');

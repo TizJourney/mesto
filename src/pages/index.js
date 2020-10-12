@@ -70,8 +70,20 @@ const popupDeleteCard = new PopupConfirm('.popup-delete-card', submitDeleteCardC
 popupDeleteCard.setEventListeners();
 
 // функциональность "динимические карточки"
+function handleLikeButton(isLiked, id) {
+  const apiLikeFunction =isLiked ? apiObject.removeLikePromise : apiObject.setLikePromise;
+  return apiLikeFunction.bind(apiObject)(id)
+    .catch((err) => { popupErrorObject.show(err) });
+}
+
 function renderCard(cardItem) {
-  const card = new Card(cardItem, userInfoObject.getUserId(), popupFullSizeImage.open.bind(popupFullSizeImage), handleDeleteButton);
+  const card = new Card(
+    cardItem,
+    userInfoObject.getUserId(),
+    popupFullSizeImage.open.bind(popupFullSizeImage),
+    handleDeleteButton,
+    handleLikeButton
+  );
   cardContainer.addItem(card.createElement());
 }
 
