@@ -73,7 +73,6 @@ function renderCard(cardItem) {
 
 const cardContainer = new Section(
   {
-    items: [],
     renderer: renderCard,
   }, '.elements__card-container');
 
@@ -81,8 +80,12 @@ const cardContainer = new Section(
 function submitFormAddCardCallback(newCardContent) {
   popupAddCard.setSaveState();
   apiObject.addCardPromise(newCardContent)
-    .then((data) => {
-      renderCard(data);
+    .then(() => {
+      return apiObject.getCardsPromise();
+    })
+    .then((cards) => {
+      cardContainer.renderItems(cards);
+      return Promise.resolve();
     })
     .catch((err) => { console.log(err); })
     .finally(() => {
@@ -115,11 +118,10 @@ profileEditAvatar.addEventListener('click', popupEditAvatar.open.bind(popupEditA
 // инициализация данных из сети
 userInfoObject.initUserInfoPromise()
   .then(() => {
-    return apiObject.getInitialCardsPromise();
+    return apiObject.getCardsPromise();
   })
   .then((cards) => {
-    cardContainer.setItems(cards);
-    cardContainer.renderItems();
+    cardContainer.renderItems(cards);
     return Promise.resolve();
   })
   .catch((err) => { console.log(err); })

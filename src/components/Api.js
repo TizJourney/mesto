@@ -30,7 +30,7 @@ export default class Api {
       })
   }
 
-  getInitialCardsPromise() {
+  getCardsPromise() {
     return this._request('cards');
   }
 
