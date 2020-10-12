@@ -52,7 +52,7 @@ export default class PopupWithForm extends Popup {
 
   setSaveState() {
     this._submitButtonText = this._submitButtonElement.textContent;
-    this._submitButtonElement.textContent = 'Сохранание...';
+    this._submitButtonElement.textContent = 'Сохранение...';
   }
 
   finishSaveState() {
