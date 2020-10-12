@@ -59,3 +59,31 @@
 @import url('../blocks/fullsize-image/fullsize-image.css');
 @import url('../blocks/fullsize-image/__picture/fullsize-image__picture.css');
 @import url('../blocks/fullsize-image/__caption/fullsize-image__caption.css');
+
+
+.profile__avatar-container {
+  margin-left: auto;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-image: url('../images/profile_avatar.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.profile__avatar-container:hover {
+  cursor: pointer;
+}
+
+.profile__avatar-container:hover .profile__avatar-overlay {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  background-color: #000;
+}
+
