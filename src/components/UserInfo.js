@@ -1,17 +1,20 @@
 import Api from './Api.js';
 
 export default class UserInfo {
-  constructor(titleSelector, descriptionSelector) {
-    this.titleElement = document.querySelector(titleSelector);
-    this.descriptionElement = document.querySelector(descriptionSelector);
+  constructor(titleSelector, descriptionSelector, avatarSelector) {
+    this._titleElement = document.querySelector(titleSelector);
+    this._descriptionElement = document.querySelector(descriptionSelector);
+    this._avatarElement = document.querySelector(avatarSelector);
     this._apiObject = new Api();
     this._request = new Request('users/me');
   }
 
   _setInfo({name, avatar, about, _id}) {
-    this.titleElement.textContent = name;
-    this.descriptionElement.textContent = about;
+    this._titleElement.textContent = name;
+    this._descriptionElement.textContent = about;
+    this._avatarElement.style.backgroundImage = `url("${avatar}")`
     this._userId = _id;
+    this._avatar = avatar;
   }
 
   initUserInfoPromise() {
@@ -24,9 +27,13 @@ export default class UserInfo {
 
   getUserInfo() {
     return [
-      this.titleElement.textContent,
-      this.descriptionElement.textContent
+      this._titleElement.textContent,
+      this._descriptionElement.textContent
     ]
+  }
+
+  getAvatar() {
+    return this._avatar;
   }
 
   getUserId() {

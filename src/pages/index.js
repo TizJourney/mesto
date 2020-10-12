@@ -20,7 +20,7 @@ import Api from '../components/Api.js';
 const apiObject = new Api();
 
 // функциональность "передача данных в блок профиля"
-const userInfoObject = new UserInfo('.profile__title', '.profile__description');
+const userInfoObject = new UserInfo('.profile__title', '.profile__description', '.profile__avatar-container');
 
 // функциональность "попап с развёрнутым изображением"
 const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
@@ -89,8 +89,8 @@ popupAddCard.setEventListeners();
 profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));
 
 // функциональность "поменять аватар"
-function submitFormEditAvatarCallback({link}) {
-  console.log(link);
+function submitFormEditAvatarCallback(data) {
+  console.log(data);
   // apiObject.addCardPromise(newCardContent)
   //   .then((data) => {
   //     renderCard(data);

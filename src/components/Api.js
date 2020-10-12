@@ -57,4 +57,8 @@ export default class Api {
   removeLike(id) {
     return this._request(`cards/likes/${id}`, 'DELETE');
   }
+
+  updateAvatar(data) {
+    return this._request('users/me/avatar', 'PATCH', data);
+  }
 }
