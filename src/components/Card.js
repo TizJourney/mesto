@@ -19,7 +19,7 @@ export default class Card {
   }
 
   _handleLikeButton() {
-    const apiLikeFunction = this._isLiked ? apiObject.removeLike : apiObject.setLike;
+    const apiLikeFunction = this._isLiked ? apiObject.removeLikePromise : apiObject.setLikePromise;
     apiLikeFunction.bind(apiObject)(this._imageData._id)
     .then((data) => {
       this._setImageData(data);

@@ -50,7 +50,7 @@ export default class UserInfo {
   }
 
   updateAvatarPromise(avatar) {
-    return this._apiObject.updateAvatar({avatar: avatar})
+    return this._apiObject.updateAvatarPromise({avatar: avatar})
       .then((data) => {
         this._setInfo(data);
         return Promise.resolve();

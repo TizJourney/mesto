@@ -46,19 +46,19 @@ export default class Api {
     return this._request('users/me', 'PATCH', data);
   }
 
-  removeCard(id) {
+  removeCardPromise(id) {
     return this._request(`cards/${id}`, 'DELETE');
   }
 
-  setLike(id) {
+  setLikePromise(id) {
     return this._request(`cards/likes/${id}`, 'PUT');
   }
 
-  removeLike(id) {
+  removeLikePromise(id) {
     return this._request(`cards/likes/${id}`, 'DELETE');
   }
 
-  updateAvatar(data) {
+  updateAvatarPromise(data) {
     return this._request('users/me/avatar', 'PATCH', data);
   }
 }

@@ -54,7 +54,7 @@ const handleDeleteButton = (cardElement) => {
 }
 
 const submitDeleteCardCallback = ({ id, element }) => {
-  apiObject.removeCard(id)
+  apiObject.removeCardPromise(id)
     .then(() => {
       element.remove();
     })
