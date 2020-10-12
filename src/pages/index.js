@@ -28,6 +28,7 @@ const userInfoObject = new UserInfo(
   '.profile__title',
   '.profile__description',
   '.profile__avatar-container',
+  apiObject.getUserInfoPromise.bind(apiObject),
   apiObject.updateUserInfoPromise.bind(apiObject),
   apiObject.updateAvatarPromise.bind(apiObject)
 );
