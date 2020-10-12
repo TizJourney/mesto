@@ -137,3 +137,4 @@ formList.forEach((formElement) => {
 // инициализация формы попапа "Добавить карточку"
 // при сбросе формы происходит пересчёт валидации и блокируется кнопка "submit"
 popupAddCard.resetForm();
+popupEditAvatar.resetForm();
