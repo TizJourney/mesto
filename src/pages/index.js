@@ -89,15 +89,10 @@ popupAddCard.setEventListeners();
 profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));
 
 // функциональность "поменять аватар"
-function submitFormEditAvatarCallback(data) {
-  console.log(data);
-  // apiObject.addCardPromise(newCardContent)
-  //   .then((data) => {
-  //     renderCard(data);
-  //   })
-  //   .catch((err) => { console.log(err); })
-  //   .finally(() => { popupAddCard.close(); });
-  popupEditAvatar.close();
+function submitFormEditAvatarCallback({avatar}) {
+  userInfoObject.updateAvatarPromise(avatar)
+    .catch((err) => { console.log(err); })
+    .finally(() => { popupEditAvatar.close(); });
 }
 
 const popupEditAvatar = new PopupWithForm('.popup-edit-avatar', submitFormEditAvatarCallback);

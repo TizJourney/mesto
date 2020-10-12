@@ -42,7 +42,19 @@ export default class UserInfo {
 
   setUserInfoPromise(title, description) {
     return this._apiObject.updateUserInfoPromise({ name: title, about: description })
-      .then((data) => { this._setInfo(data); })
+      .then((data) => {
+        this._setInfo(data);
+        return Promise.resolve();
+      })
+      .catch((err) => { console.log(err); })
+  }
+
+  updateAvatarPromise(avatar) {
+    return this._apiObject.updateAvatar({avatar: avatar})
+      .then((data) => {
+        this._setInfo(data);
+        return Promise.resolve();
+      })
       .catch((err) => { console.log(err); })
   }
 }
