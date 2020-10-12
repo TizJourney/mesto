@@ -1,8 +1,3 @@
-import Api from '../components/Api.js';
-import PopupError from './PopupError.js';
-
-
-
 export default class Card {
   constructor(imageData, userId, handleCardClick, handleCardDelete, handleLikeButton, cardTemplateSelector = '#card-temlate') {
     this._userId = userId;
