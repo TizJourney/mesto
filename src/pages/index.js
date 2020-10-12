@@ -78,7 +78,7 @@ popupDeleteCard.setEventListeners();
 
 // функциональность "динимические карточки"
 function handleLikeButton(isLiked, id) {
-  const apiLikeFunction =isLiked ? apiObject.removeLikePromise : apiObject.setLikePromise;
+  const apiLikeFunction = isLiked ? apiObject.removeLikePromise : apiObject.setLikePromise;
   return apiLikeFunction.bind(apiObject)(id)
     .catch((err) => { popupErrorObject.show(err) });
 }
@@ -123,7 +123,7 @@ popupAddCard.setEventListeners();
 profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));
 
 // функциональность "поменять аватар"
-function submitFormEditAvatarCallback({avatar}) {
+function submitFormEditAvatarCallback({ avatar }) {
   popupEditAvatar.setSaveState();
   userInfoObject.updateAvatarPromise(avatar)
     .catch((err) => { popupErrorObject.show(err); })
