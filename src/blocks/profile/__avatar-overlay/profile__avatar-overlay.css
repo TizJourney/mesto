@@ -1,0 +1,10 @@
+.profile__avatar-container:hover .profile__avatar-overlay {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  background-color: #000;
+}

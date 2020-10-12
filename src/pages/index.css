@@ -13,6 +13,8 @@
 @import url('../blocks/header/__logo/header__logo.css');
 
 @import url('../blocks/profile/profile.css');
+@import url('../blocks/profile/__avatar-container/profile__avatar-container.css');
+@import url('../blocks/profile/__avatar-overlay/profile__avatar-overlay.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/profile/__text-content/profile__text-content.css');
 @import url('../blocks/profile/__title-element/profile__title-element.css');
@@ -60,30 +62,4 @@
 @import url('../blocks/fullsize-image/__picture/fullsize-image__picture.css');
 @import url('../blocks/fullsize-image/__caption/fullsize-image__caption.css');
 
-
-.profile__avatar-container {
-  margin-left: auto;
-  position: relative;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background-image: url('../images/profile_avatar.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.profile__avatar-container:hover {
-  cursor: pointer;
-}
-
-.profile__avatar-container:hover .profile__avatar-overlay {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.8;
-  background-color: #000;
-}
 
