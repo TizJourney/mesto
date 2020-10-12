@@ -28,9 +28,13 @@ popupFullSizeImage.setEventListeners();
 
 // функциональность "изменить профиль"
 const submitFormEditProfileCallback = ({ title, description }) => {
+  popupEditProfile.setSaveState();
   userInfoObject.setUserInfoPromise(title, description)
     .catch((err) => { console.log(err); })
-    .finally(() => { popupEditProfile.close(); });
+    .finally(() => {
+      popupEditProfile.finishSaveState();
+      popupEditProfile.close();
+    });
 };
 
 const popupEditProfile = new PopupWithForm('.popup-edit-profile', submitFormEditProfileCallback);
@@ -75,12 +79,16 @@ const cardContainer = new Section(
 
 // функциональность "добавить картинку"
 function submitFormAddCardCallback(newCardContent) {
+  popupAddCard.setSaveState();
   apiObject.addCardPromise(newCardContent)
     .then((data) => {
       renderCard(data);
     })
     .catch((err) => { console.log(err); })
-    .finally(() => { popupAddCard.close(); });
+    .finally(() => {
+      popupAddCard.finishSaveState();
+      popupAddCard.close();
+    });
 }
 
 const popupAddCard = new PopupWithForm('.popup-add-card', submitFormAddCardCallback);
@@ -90,9 +98,13 @@ profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard))
 
 // функциональность "поменять аватар"
 function submitFormEditAvatarCallback({avatar}) {
+  popupEditAvatar.setSaveState();
   userInfoObject.updateAvatarPromise(avatar)
     .catch((err) => { console.log(err); })
-    .finally(() => { popupEditAvatar.close(); });
+    .finally(() => {
+      popupEditAvatar.finishSaveState();
+      popupEditAvatar.close();
+    });
 }
 
 const popupEditAvatar = new PopupWithForm('.popup-edit-avatar', submitFormEditAvatarCallback);

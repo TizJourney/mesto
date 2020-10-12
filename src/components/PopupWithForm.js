@@ -4,7 +4,10 @@ export default class PopupWithForm extends Popup {
   constructor(popupSelector, submitHandler) {
     super(popupSelector);
     this._submitHandler = submitHandler;
+
     this._formElement = this._popupElement.querySelector('.popup-form');
+    this._submitButtonElement = this._popupElement.querySelector('.popup-form__save-button');
+
     const allInputs = Array.from(this._formElement.querySelectorAll('.popup-form__input'));
     this._formInputs = allInputs.reduce((dict, el) => {
       dict[el.name] = el;
@@ -45,5 +48,14 @@ export default class PopupWithForm extends Popup {
   close()  {
     this._formElement.reset();
     super.close();
+  }
+
+  setSaveState() {
+    this._submitButtonText = this._submitButtonElement.textContent;
+    this._submitButtonElement.textContent = 'Сохранание...';
+  }
+
+  finishSaveState() {
+    this._submitButtonElement.textContent = this._submitButtonText;
   }
 }
