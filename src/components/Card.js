@@ -16,7 +16,7 @@ export default class Card {
   }
 
   _handleLikeButtonCallback() {
-    this._handleLikeButton(this._isLiked, this._imageData._id)
+    return this._handleLikeButton(this._isLiked, this._imageData._id)
       .then((data) => {
         this._setImageData(data);
         this._updateLikeStatus();

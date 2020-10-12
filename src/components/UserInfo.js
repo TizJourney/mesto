@@ -1,12 +1,12 @@
-import Api from './Api.js';
-import PopupError from './PopupError.js';
-
 export default class UserInfo {
-  constructor(titleSelector, descriptionSelector, avatarSelector) {
+  constructor(titleSelector, descriptionSelector, avatarSelector, handleUserInfoUpdate, handleAvatarUpdate) {
     this._titleElement = document.querySelector(titleSelector);
     this._descriptionElement = document.querySelector(descriptionSelector);
     this._avatarElement = document.querySelector(avatarSelector);
     this._request = new Request('users/me');
+
+    this._handleUserInfoUpdate = handleUserInfoUpdate;
+    this._handleAvatarUpdate = handleAvatarUpdate;
 
     this._apiObject = new Api();
     this._popupErrorObject = new PopupError();
@@ -44,20 +44,18 @@ export default class UserInfo {
   }
 
   setUserInfoPromise(title, description) {
-    return this._apiObject.updateUserInfoPromise({ name: title, about: description })
+    return this._handleUserInfoUpdate({ name: title, about: description })
       .then((data) => {
         this._setInfo(data);
         return Promise.resolve();
-      })
-      .catch((err) => { this._popupErrorObject.show(err); })
+      });
   }
 
   updateAvatarPromise(avatar) {
-    return this._apiObject.updateAvatarPromise({avatar: avatar})
+    return this._handleAvatarUpdate({ avatar: avatar })
       .then((data) => {
         this._setInfo(data);
         return Promise.resolve();
       })
-      .catch((err) => { this._popupErrorObject.show(err); })
   }
 }

@@ -24,7 +24,13 @@ const apiObject = new Api();
 const popupErrorObject = new PopupError();
 
 // функциональность "передача данных в блок профиля"
-const userInfoObject = new UserInfo('.profile__title', '.profile__description', '.profile__avatar-container');
+const userInfoObject = new UserInfo(
+  '.profile__title',
+  '.profile__description',
+  '.profile__avatar-container',
+  apiObject.updateUserInfoPromise.bind(apiObject),
+  apiObject.updateAvatarPromise.bind(apiObject)
+);
 
 // функциональность "попап с развёрнутым изображением"
 const popupFullSizeImage = new PopupWithImage('.popup-fullsize-image');
