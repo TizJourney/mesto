@@ -29,6 +29,7 @@ export const initialCards = [
 const profileElement = document.querySelector('.profile');
 export const profileElementEditButton = profileElement.querySelector('.profile__edit-button');
 export const profileAddButton = profileElement.querySelector('.profile__add-button')
+export const profileEditAvatar = profileElement.querySelector('.profile__avatar')
 
 // селекторы для валидации форм
 export const defaultFormSelectors = {

@@ -3,6 +3,7 @@ import './index.css';
 import {
   profileElementEditButton,
   profileAddButton,
+  profileEditAvatar,
   defaultFormSelectors,
 } from '../util/constants.js';
 
@@ -86,6 +87,23 @@ const popupAddCard = new PopupWithForm('.popup-add-card', submitFormAddCardCallb
 popupAddCard.setEventListeners();
 
 profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));
+
+// функциональность "поменять аватар"
+function submitFormEditAvatarCallback({link}) {
+  console.log(link);
+  // apiObject.addCardPromise(newCardContent)
+  //   .then((data) => {
+  //     renderCard(data);
+  //   })
+  //   .catch((err) => { console.log(err); })
+  //   .finally(() => { popupAddCard.close(); });
+  popupEditAvatar.close();
+}
+
+const popupEditAvatar = new PopupWithForm('.popup-edit-avatar', submitFormEditAvatarCallback);
+popupEditAvatar.setEventListeners();
+
+profileEditAvatar.addEventListener('click', popupEditAvatar.open.bind(popupEditAvatar));
 
 // инициализация данных из сети
 userInfoObject.initUserInfoPromise()
