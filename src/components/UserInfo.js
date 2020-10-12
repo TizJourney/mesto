@@ -1,12 +1,15 @@
 import Api from './Api.js';
+import PopupError from './PopupError.js';
 
 export default class UserInfo {
   constructor(titleSelector, descriptionSelector, avatarSelector) {
     this._titleElement = document.querySelector(titleSelector);
     this._descriptionElement = document.querySelector(descriptionSelector);
     this._avatarElement = document.querySelector(avatarSelector);
-    this._apiObject = new Api();
     this._request = new Request('users/me');
+
+    this._apiObject = new Api();
+    this._popupErrorObject = new PopupError();
   }
 
   _setInfo({name, avatar, about, _id}) {
@@ -46,7 +49,7 @@ export default class UserInfo {
         this._setInfo(data);
         return Promise.resolve();
       })
-      .catch((err) => { console.log(err); })
+      .catch((err) => { this._popupErrorObject.show(err); })
   }
 
   updateAvatarPromise(avatar) {
@@ -55,6 +58,6 @@ export default class UserInfo {
         this._setInfo(data);
         return Promise.resolve();
       })
-      .catch((err) => { console.log(err); })
+      .catch((err) => { this._popupErrorObject.show(err); })
   }
 }

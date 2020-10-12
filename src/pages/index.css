@@ -62,4 +62,36 @@
 @import url('../blocks/fullsize-image/__picture/fullsize-image__picture.css');
 @import url('../blocks/fullsize-image/__caption/fullsize-image__caption.css');
 
+.popup-error {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: calc(min(400px, 100% - 40px));
+  background-color: brown;
+  padding: 20px;
+  visibility: hidden;
+}
 
+.popup-error_active {
+  visibility: visible;
+}
+
+.popup-error__title {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+.popup-error__message {
+  margin: 10px 0 0 0;
+  padding: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.22;
+  color: black  ;
+}

@@ -1,6 +1,7 @@
 import Api from '../components/Api.js';
+import PopupError from './PopupError.js';
 
-const apiObject = new Api();
+
 
 export default class Card {
   constructor(imageData, userId, handleCardClick, handleCardDelete, cardTemplateSelector = '#card-temlate') {
@@ -8,6 +9,9 @@ export default class Card {
     this._cardTemplate = document.querySelector(cardTemplateSelector).content;
     this._handleCardClick = handleCardClick;
     this._handleCardDelete = handleCardDelete;
+
+    this._apiObject = new Api();
+    this._popupErrorObject = new PopupError();
 
     this._setImageData(imageData);
   }
@@ -19,13 +23,13 @@ export default class Card {
   }
 
   _handleLikeButton() {
-    const apiLikeFunction = this._isLiked ? apiObject.removeLikePromise : apiObject.setLikePromise;
-    apiLikeFunction.bind(apiObject)(this._imageData._id)
+    const apiLikeFunction = this._isLiked ? this._apiObject.removeLikePromise : this._apiObject.setLikePromise;
+    apiLikeFunction.bind(this._apiObject)(this._imageData._id)
     .then((data) => {
       this._setImageData(data);
       this._updateLikeStatus();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => this._popupErrorObject.show(err));
   }
 
   _handleCardClickCallback() {

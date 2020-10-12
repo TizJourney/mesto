@@ -15,9 +15,13 @@ import PopupConfirm from '../components/PopupConfirm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
+import PopupError from '../components/PopupError.js';
 
 // классы для работы с api
 const apiObject = new Api();
+
+// Функциональность для обработки ошибок
+const popupErrorObject = new PopupError();
 
 // функциональность "передача данных в блок профиля"
 const userInfoObject = new UserInfo('.profile__title', '.profile__description', '.profile__avatar-container');
@@ -30,7 +34,7 @@ popupFullSizeImage.setEventListeners();
 const submitFormEditProfileCallback = ({ title, description }) => {
   popupEditProfile.setSaveState();
   userInfoObject.setUserInfoPromise(title, description)
-    .catch((err) => { console.log(err); })
+    .catch((err) => { popupErrorObject.show(err); })
     .finally(() => {
       popupEditProfile.finishSaveState();
       popupEditProfile.close();
@@ -58,7 +62,7 @@ const submitDeleteCardCallback = ({ id, element }) => {
     .then(() => {
       element.remove();
     })
-    .catch((err) => { console.log(err); })
+    .catch((err) => { popupErrorObject.show(err); })
     .finally(() => { popupDeleteCard.close(); })
 }
 
@@ -87,7 +91,7 @@ function submitFormAddCardCallback(newCardContent) {
       cardContainer.renderItems(cards);
       return Promise.resolve();
     })
-    .catch((err) => { console.log(err); })
+    .catch((err) => { popupErrorObject.show(err); })
     .finally(() => {
       popupAddCard.finishSaveState();
       popupAddCard.close();
@@ -103,7 +107,7 @@ profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard))
 function submitFormEditAvatarCallback({avatar}) {
   popupEditAvatar.setSaveState();
   userInfoObject.updateAvatarPromise(avatar)
-    .catch((err) => { console.log(err); })
+    .catch((err) => { popupErrorObject.show(err); })
     .finally(() => {
       popupEditAvatar.finishSaveState();
       popupEditAvatar.close();
@@ -124,7 +128,7 @@ userInfoObject.initUserInfoPromise()
     cardContainer.renderItems(cards);
     return Promise.resolve();
   })
-  .catch((err) => { console.log(err); })
+  .catch((err) => { popupErrorObject.show(err); })
 
 // инициализация валидации для всех форм
 const formList = Array.from(document.querySelectorAll(defaultFormSelectors.formSelector));
