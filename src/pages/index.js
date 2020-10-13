@@ -5,6 +5,8 @@ import {
   profileAddButton,
   profileEditAvatar,
   defaultFormSelectors,
+  apiToken,
+  apiBaseUrl
 } from '../util/constants.js';
 
 import Card from '../components/Card.js';
@@ -18,7 +20,7 @@ import Api from '../components/Api.js';
 import PopupError from '../components/PopupError.js';
 
 // классы для работы с api
-const apiObject = new Api();
+const apiObject = new Api(apiBaseUrl, apiToken);
 
 // Функциональность для обработки ошибок
 const popupErrorObject = new PopupError();

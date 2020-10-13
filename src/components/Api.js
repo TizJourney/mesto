@@ -1,18 +1,14 @@
-import {
-  token,
-  baseUrl
-} from '../util/constants.js';
-
 export default class Api {
-  constructor(urlTail) {
+  constructor(baseUrl, token) {
     this._baseUrl = baseUrl;
+    this._token = token;
   }
 
   _request(tailUrl, method='GET', data=null) {
     const requestParams = {
       method: method,
       headers: {
-        authorization: token
+        authorization: this._token
       },
     }
 
