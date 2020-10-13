@@ -62,12 +62,16 @@ export default class Card {
     return  this._imageData._id;
   }
 
-  createElement() {
+  _getTemplate() {
+    return this._cardTemplate.querySelector('.card').cloneNode(true);
+  }
+
+  getView() {
     if (this._cardElement) {
       return this._cardElement;
     }
 
-    this._cardElement = this._cardTemplate.querySelector('.card').cloneNode(true);
+    this._cardElement = this._getTemplate();
 
     const imageElement = this._cardElement.querySelector('.card__image');
     const titleElement = this._cardElement.querySelector('.card__title');
@@ -83,8 +87,8 @@ export default class Card {
     imageElement.src = this._imageData.link;
     imageElement.alt = `Изображение места ${this._imageData.name}`;
     titleElement.textContent = this._imageData.name;
-    this._updateLikeStatus();
 
+    this._updateLikeStatus();
     this._addEventListeners();
 
     return this._cardElement;

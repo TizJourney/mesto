@@ -100,7 +100,7 @@ function renderCard(cardItem) {
     handleDeleteButton,
     handleLikeButton
   );
-  cardContainer.addItem(card.createElement());
+  cardContainer.addItem(card.getView());
 }
 
 const cardContainer = new Section(
