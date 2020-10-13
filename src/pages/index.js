@@ -41,10 +41,13 @@ popupFullSizeImage.setEventListeners();
 const submitFormEditProfileCallback = ({ title, description }) => {
   popupEditProfile.setSaveState();
   userInfoObject.setUserInfoPromise(title, description)
+    .then(() => {
+      popupEditProfile.close();
+      return Promise.resolve();
+    })
     .catch((err) => { popupErrorObject.show(err); })
     .finally(() => {
       popupEditProfile.finishSaveState();
-      popupEditProfile.close();
     });
 };
 
@@ -69,8 +72,11 @@ const submitDeleteCardCallback = ({ id, element }) => {
     .then(() => {
       element.remove();
     })
+    .then(() => {
+      popupDeleteCard.close();
+      return Promise.resolve();
+    })
     .catch((err) => { popupErrorObject.show(err); })
-    .finally(() => { popupDeleteCard.close(); })
 }
 
 const popupDeleteCard = new PopupConfirm('.popup-delete-card', submitDeleteCardCallback);
@@ -108,12 +114,12 @@ function submitFormAddCardCallback(newCardContent) {
     })
     .then((cards) => {
       cardContainer.renderItems(cards);
+      popupAddCard.close();
       return Promise.resolve();
     })
     .catch((err) => { popupErrorObject.show(err); })
     .finally(() => {
       popupAddCard.finishSaveState();
-      popupAddCard.close();
     });
 }
 
@@ -126,10 +132,13 @@ profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard))
 function submitFormEditAvatarCallback({ avatar }) {
   popupEditAvatar.setSaveState();
   userInfoObject.updateAvatarPromise(avatar)
+    .then(() => {
+      popupEditAvatar.close();
+      return Promise.resolve();
+    })
     .catch((err) => { popupErrorObject.show(err); })
     .finally(() => {
       popupEditAvatar.finishSaveState();
-      popupEditAvatar.close();
     });
 }
 
