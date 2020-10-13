@@ -29,10 +29,7 @@ const popupErrorObject = new PopupError();
 const userInfoObject = new UserInfo(
   '.profile__title',
   '.profile__description',
-  '.profile__avatar-container',
-  apiObject.getUserInfo.bind(apiObject),
-  apiObject.updateUserInfo.bind(apiObject),
-  apiObject.updateAvatar.bind(apiObject)
+  '.profile__avatar-container'
 );
 
 // функциональность "попап с развёрнутым изображением"
@@ -42,8 +39,9 @@ popupFullSizeImage.setEventListeners();
 // функциональность "изменить профиль"
 const submitFormEditProfileCallback = ({ title, description }) => {
   popupEditProfile.setSaveState();
-  userInfoObject.setUserInfoPromise(title, description)
-    .then(() => {
+  apiObject.updateUserInfo({ name: title, about: description })
+    .then((info) => {
+      userInfoObject.setInfo(info);
       popupEditProfile.close();
       return Promise.resolve();
     })
@@ -63,6 +61,26 @@ const initAndShowFormEditProfile = () => {
 }
 
 profileElementEditButton.addEventListener('click', initAndShowFormEditProfile);
+
+// функциональность "поменять аватар"
+function submitFormEditAvatarCallback({ avatar }) {
+  popupEditAvatar.setSaveState();
+  apiObject.updateAvatar({avatar})
+    .then((info) => {
+      userInfoObject.setInfo(info);
+      popupEditAvatar.close();
+      return Promise.resolve();
+    })
+    .catch((err) => { popupErrorObject.show(err); })
+    .finally(() => {
+      popupEditAvatar.finishSaveState();
+    });
+}
+
+const popupEditAvatar = new PopupWithForm('.popup-edit-avatar', submitFormEditAvatarCallback);
+popupEditAvatar.setEventListeners();
+
+profileEditAvatar.addEventListener('click', popupEditAvatar.open.bind(popupEditAvatar));
 
 // функциональность "удалить карточку"
 const handleDeleteButton = (cardElement) => {
@@ -131,32 +149,14 @@ popupAddCard.setEventListeners();
 
 profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));
 
-// функциональность "поменять аватар"
-function submitFormEditAvatarCallback({ avatar }) {
-  popupEditAvatar.setSaveState();
-  userInfoObject.updateAvatarPromise(avatar)
-    .then(() => {
-      popupEditAvatar.close();
-      return Promise.resolve();
-    })
-    .catch((err) => { popupErrorObject.show(err); })
-    .finally(() => {
-      popupEditAvatar.finishSaveState();
-    });
-}
-
-const popupEditAvatar = new PopupWithForm('.popup-edit-avatar', submitFormEditAvatarCallback);
-popupEditAvatar.setEventListeners();
-
-profileEditAvatar.addEventListener('click', popupEditAvatar.open.bind(popupEditAvatar));
-
 // инициализация данных из сети
 Promise.all([
-  userInfoObject.initUserInfoPromise(),
+  apiObject.getUserInfo(),
   apiObject.getCards(),
 ])
   .then((values) => {
     const [userData, initialCards] = values;
+    userInfoObject.setInfo(userData);
     cardContainer.renderItems(initialCards);
   })
   .then((cards) => {
