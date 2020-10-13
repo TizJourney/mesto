@@ -149,12 +149,15 @@ popupEditAvatar.setEventListeners();
 profileEditAvatar.addEventListener('click', popupEditAvatar.open.bind(popupEditAvatar));
 
 // инициализация данных из сети
-userInfoObject.initUserInfoPromise()
-  .then(() => {
-    return apiObject.getCardsPromise();
+Promise.all([
+  userInfoObject.initUserInfoPromise(),
+  apiObject.getCardsPromise(),
+])
+  .then((values) => {
+    const [userData, initialCards] = values;
+    cardContainer.renderItems(initialCards);
   })
   .then((cards) => {
-    cardContainer.renderItems(cards);
     return Promise.resolve();
   })
   .catch((err) => { popupErrorObject.show(err); })
