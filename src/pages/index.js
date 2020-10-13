@@ -67,10 +67,11 @@ const handleDeleteButton = (cardElement) => {
   popupDeleteCard.open(cardElement);
 }
 
-const submitDeleteCardCallback = ({ id, element }) => {
-  apiObject.removeCardPromise(id)
+const submitDeleteCardCallback = (card) => {
+  apiObject.removeCardPromise(card.getId())
     .then(() => {
-      element.remove();
+      card.deleteCard();
+      return Promise.resolve();
     })
     .then(() => {
       popupDeleteCard.close();

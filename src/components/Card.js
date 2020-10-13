@@ -29,7 +29,7 @@ export default class Card {
 
   _handleCardDeleteCallback(event) {
     const cardItem = event.target.closest('.card');
-    this._handleCardDelete({ id: this._imageData._id, element: cardItem });
+    this._handleCardDelete(this);
   }
 
   _addEventListeners() {
@@ -54,12 +54,21 @@ export default class Card {
     this._cardLikeNumber.textContent = this._imageData.likes.length;
   }
 
+  deleteCard() {
+    this._cardElement.remove();
+    this._cardElement = null;
+  }
+
+  getId() {
+    return  this._imageData._id;
+  }
+
   createElement() {
     if (this._cardElement) {
       return this._cardElement;
     }
 
-    this._cardElement = this._cardTemplate.cloneNode(true);
+    this._cardElement = this._cardTemplate.querySelector('.card').cloneNode(true);
 
     const imageElement = this._cardElement.querySelector('.card__image');
     const titleElement = this._cardElement.querySelector('.card__title');
