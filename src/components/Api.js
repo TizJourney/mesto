@@ -26,35 +26,35 @@ export default class Api {
       })
   }
 
-  getCardsPromise() {
+  getCards() {
     return this._request('cards');
   }
 
-  addCardPromise(data) {
+  addCard(data) {
     return this._request('cards', 'POST', data);
   }
 
-  getUserInfoPromise() {
+  getUserInfo() {
     return this._request('users/me');
   }
 
-  updateUserInfoPromise(data) {
+  updateUserInfo(data) {
     return this._request('users/me', 'PATCH', data);
   }
 
-  removeCardPromise(id) {
+  removeCard(id) {
     return this._request(`cards/${id}`, 'DELETE');
   }
 
-  setLikePromise(id) {
+  setLike(id) {
     return this._request(`cards/likes/${id}`, 'PUT');
   }
 
-  removeLikePromise(id) {
+  removeLike(id) {
     return this._request(`cards/likes/${id}`, 'DELETE');
   }
 
-  updateAvatarPromise(data) {
+  updateAvatar(data) {
     return this._request('users/me/avatar', 'PATCH', data);
   }
 }

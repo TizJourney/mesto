@@ -30,9 +30,9 @@ const userInfoObject = new UserInfo(
   '.profile__title',
   '.profile__description',
   '.profile__avatar-container',
-  apiObject.getUserInfoPromise.bind(apiObject),
-  apiObject.updateUserInfoPromise.bind(apiObject),
-  apiObject.updateAvatarPromise.bind(apiObject)
+  apiObject.getUserInfo.bind(apiObject),
+  apiObject.updateUserInfo.bind(apiObject),
+  apiObject.updateAvatar.bind(apiObject)
 );
 
 // функциональность "попап с развёрнутым изображением"
@@ -70,7 +70,7 @@ const handleDeleteButton = (cardElement) => {
 }
 
 const submitDeleteCardCallback = (card) => {
-  apiObject.removeCardPromise(card.getId())
+  apiObject.removeCard(card.getId())
     .then(() => {
       card.deleteCard();
       return Promise.resolve();
@@ -87,7 +87,7 @@ popupDeleteCard.setEventListeners();
 
 // функциональность "динимические карточки"
 function handleLikeButton(isLiked, id) {
-  const apiLikeFunction = isLiked ? apiObject.removeLikePromise : apiObject.setLikePromise;
+  const apiLikeFunction = isLiked ? apiObject.removeLike : apiObject.setLike;
   return apiLikeFunction.bind(apiObject)(id)
     .catch((err) => { popupErrorObject.show(err) });
 }
@@ -111,9 +111,9 @@ const cardContainer = new Section(
 // функциональность "добавить картинку"
 function submitFormAddCardCallback(newCardContent) {
   popupAddCard.setSaveState();
-  apiObject.addCardPromise(newCardContent)
+  apiObject.addCard(newCardContent)
     .then(() => {
-      return apiObject.getCardsPromise();
+      return apiObject.getCards();
     })
     .then((cards) => {
       cardContainer.renderItems(cards);
@@ -153,7 +153,7 @@ profileEditAvatar.addEventListener('click', popupEditAvatar.open.bind(popupEditA
 // инициализация данных из сети
 Promise.all([
   userInfoObject.initUserInfoPromise(),
-  apiObject.getCardsPromise(),
+  apiObject.getCards(),
 ])
   .then((values) => {
     const [userData, initialCards] = values;
