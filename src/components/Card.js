@@ -28,7 +28,6 @@ export default class Card {
   }
 
   _handleCardDeleteCallback(event) {
-    const cardItem = event.target.closest('.card');
     this._handleCardDelete(this);
   }
 
