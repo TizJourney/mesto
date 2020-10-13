@@ -9,7 +9,7 @@ export default class UserInfo {
     this._handleAvatarUpdate = handleAvatarUpdate;
   }
 
-  _setInfo({name, avatar, about, _id}) {
+  setInfo({name, avatar, about, _id}) {
     this._titleElement.textContent = name;
     this._descriptionElement.textContent = about;
     this._avatarElement.style.backgroundImage = `url("${avatar}")`
@@ -20,16 +20,18 @@ export default class UserInfo {
   initUserInfoPromise() {
     return this._handleUserInfoInit()
     .then((data) => {
-      this._setInfo(data);
+      this.setInfo(data);
       return Promise.resolve();
     })
   }
 
   getUserInfo() {
-    return [
-      this._titleElement.textContent,
-      this._descriptionElement.textContent
-    ]
+    return {
+      name: this._titleElement.textContent,
+      avatar: this._avatar,
+      about: this._descriptionElement.textContent,
+      _id: this._userId,
+    }
   }
 
   getAvatar() {
@@ -43,7 +45,7 @@ export default class UserInfo {
   setUserInfoPromise(title, description) {
     return this._handleUserInfoUpdate({ name: title, about: description })
       .then((data) => {
-        this._setInfo(data);
+        this.setInfo(data);
         return Promise.resolve();
       });
   }
@@ -51,7 +53,7 @@ export default class UserInfo {
   updateAvatarPromise(avatar) {
     return this._handleAvatarUpdate({ avatar: avatar })
       .then((data) => {
-        this._setInfo(data);
+        this.setInfo(data);
         return Promise.resolve();
       })
   }

@@ -57,8 +57,8 @@ const popupEditProfile = new PopupWithForm('.popup-edit-profile', submitFormEdit
 popupEditProfile.setEventListeners();
 
 const initAndShowFormEditProfile = () => {
-  const [title, description] = userInfoObject.getUserInfo();
-  popupEditProfile.setValues({ title, description });
+  const {name, about} = userInfoObject.getUserInfo();
+  popupEditProfile.setValues({ title: name, description: about });
   popupEditProfile.open();
 }
 
