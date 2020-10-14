@@ -1,6 +1,6 @@
 # Проект: Место
 
-[Публикация проекта на GitPages](https://tizjourney.github.io/mesto) (временно недоступен)
+[Публикация проекта на GitPages](https://tizjourney.github.io/mesto)
 
 ## Описание
 Базовая страница,имитирующая профиль пользователя;
